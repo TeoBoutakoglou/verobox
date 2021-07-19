@@ -17,7 +17,7 @@
     // session_unset();
     // session_destroy();
 
-    //set_is_online($username, True);
+    set_is_online($username, True);
 ?>
 
 
