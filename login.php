@@ -18,6 +18,13 @@
 
 
     session_start();
+
+    //Auto direct to home page if load login.php and already connected in local machine
+    if(isset($_SESSION["username"]))
+    {
+      redirect_to("home.php");
+    }
+
     //Get successful registration message
     if(isset($_SESSION['successfulRegistrationMessage']))
     {
@@ -77,7 +84,7 @@
   <body>
 
     <!--welcome to login page message-->
-    <h2>welcome to login page!</h2>
+    <h2>welcome to Verobox!</h2>
 
     <!--login form-->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
