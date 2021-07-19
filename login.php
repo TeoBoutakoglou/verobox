@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Login - Verobox</title>
-    <link rel="stylesheet" href="style/login.css">
+    <link rel="stylesheet" href="styles/login/css/style.css">
   </head>
 
   <!--check credentials for login--> 

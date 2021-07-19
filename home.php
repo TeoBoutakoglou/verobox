@@ -24,7 +24,7 @@
 <html>
     <head>
         <title><?php echo $username?> - Verobox</title>
-        <link rel="stylesheet" href="style/home.css">
+        <link rel="stylesheet" href="styles/home/css/style.css">
     </head>
 
 
