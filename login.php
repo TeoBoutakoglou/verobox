@@ -13,17 +13,32 @@
     $usernameErr = $passwordErr = "";
     $givenUsername =  $givenPassword = "";
 
-    $successfulRegistrationMessage = '';
+    //messages variables
+    $successfulRegistrationMessage = $successfulLogoutMessage = '';
 
 
-    //Get successful registration message
     session_start();
+    //Get successful registration message
     if(isset($_SESSION['successfulRegistrationMessage']))
     {
       $successfulRegistrationMessage = $_SESSION['successfulRegistrationMessage'];
+      echo $successfulRegistrationMessage;
     }
+
+    
+    //Get successful logout message
+    if(isset($_SESSION['successfulLogoutMessage']))
+    {
+      $successfulLogoutMessage = $_SESSION['successfulLogoutMessage'];
+      echo $successfulLogoutMessage;
+    }
+
+
     session_unset();
     session_destroy();
+
+
+
 
 
     if(  isset($_POST['loginUsername']) && isset($_POST['loginPassword'])  ){
@@ -55,7 +70,7 @@
         $usernameErr = 'no such username';
       }
     }
-    echo $successfulRegistrationMessage;
+    
   ?>
 
 

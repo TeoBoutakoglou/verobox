@@ -4,20 +4,35 @@
 
 
     session_start();
+        
     if(!isset($_SESSION["username"])){
         //first login to your account
+        session_unset();
+        session_destroy();
         redirect_to('login.php');
     }
     else
     {
         $username = $_SESSION["username"];
-        echo "<p>Welcome, " . $username . "</p>";
+        set_is_online($username, 1);
     }
+    
+    if(isset($_GET["_task"]))
+    {
+        if($_GET["_task"] == "logout")
+        {
+            session_unset();
+            session_destroy();
+            set_is_online($username, 0);
+            session_start();
+            $_SESSION["successfulLogoutMessage"] = $username . " you're successfully logout.";
+            redirect_to('login.php');
+        }
+    }
+    
+    
+    
 
-    // session_unset();
-    // session_destroy();
-
-    set_is_online($username, True);
 ?>
 
 
@@ -30,8 +45,8 @@
 
     <body>
 
-    <p class="tmp"> hello
-
+    <p class="tmp">Welcome, <?php echo $username?></p>
+    <a href="home.php?_task=logout"> logout</a>
 
     </body>
 </html>
