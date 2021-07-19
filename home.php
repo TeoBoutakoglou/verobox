@@ -46,7 +46,17 @@
     <body>
 
     <p class="tmp">Welcome, <?php echo $username?></p>
-    <a href="home.php?_task=logout"> logout</a>
+
+    <form action="upload_item.php" method="POST" enctype="multipart/form-data">
+        Select item to upload:
+        <input type="file" name="itemToUpload" id="itemToUpload">
+        <input type="submit" value="Upload Item" name="submit">
+    </form>
+
+
+
+
+    <a href="home.php?_task=logout">logout</a>
 
     </body>
 </html>
