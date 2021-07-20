@@ -86,9 +86,9 @@ function create_new_user_in_filesystem($username)
     chdir("users_items");
     create_folder($username);
     chdir($username);
-    create_folder("files");
-    create_folder("photos");
-    create_folder("videos");
+    create_folder("file");
+    create_folder("image");
+    create_folder("video");
 }
 
 
@@ -110,8 +110,37 @@ function get_item_extension($item)
 
 function is_allowed_item_extension($itemExtension)
 {
-    $allowedExtensions = array("jpg", "mkv", "pdf", "doc");
+    $allowedExtensions = array("jpg", "mkv", "pdf", "doc", "log");
     return in_array($itemExtension, $allowedExtensions);
+}
+
+
+function is__file($itemExtension)
+{
+    $fileExtensions = array("pdf", "doc", "log");
+    return in_array($itemExtension, $fileExtensions);
+}
+
+
+function is_image($itemExtension)
+{
+    $imageExtensions = array("jpg");
+    return in_array($itemExtension, $imageExtensions);
+}
+
+
+function is_video($itemExtension)
+{
+    $videoExtensions = array("mkv");
+    return in_array($itemExtension, $videoExtensions);
+}
+
+
+function get_item_type($itemExtension)
+{
+    if (is__file($itemExtension)) return 'file';
+    else if (is_image ($itemExtension)) return 'image';
+    else if (is_video($itemExtension)) return 'video';
 }
 
 

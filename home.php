@@ -3,6 +3,9 @@
     include_once './etc/functions.php';
 
 
+    //messages variables
+    $successfulUploadedItemMessage = '';
+
     session_start();
         
     if(!isset($_SESSION["username"])){
@@ -30,7 +33,10 @@
         }
     }
     
-    
+    if(isset($_SESSION["successfulUploadedItemMessage"])){
+        $successfulUploadedItemMessage = $_SESSION["successfulUploadedItemMessage"];
+        echo "<br>" . $successfulUploadedItemMessage;
+    }
     
 
 ?>

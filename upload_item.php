@@ -2,27 +2,45 @@
 
 include_once './etc/functions.php';
 
-
-$target_item = basename($_FILES["itemToUpload"]["name"]);
-echo "Name-> " . $target_item;
-$itemExtension = get_item_extension($target_item);
-echo "<br>Extension-> " . $itemExtension;
-
-
-// Check item size (Bytes)
-if ($_FILES["itemToUpload"]["size"] > 567645 ) {
-    echo "<br>Sorry, your item is too large.";
-}
-
-// Allow certain item formats
-if (!is_allowed_item_extension($itemExtension))
+if(!isset($_FILES['itemToUpload']))
 {
-  echo "<br>Τhese types of items aren't allowed to upload";
-}      
+  echo "Please select an item first";
+} 
+else
+{ 
+  $errors = array();
+  $item_name = $_FILES['itemToUpload']['name'];
+  $item_size = $_FILES['itemToUpload']['size'];
+  $item_tmp_name = $_FILES['itemToUpload']['tmp_name'];
+  $item_extension = get_item_extension($item_name);
+  $item_type = get_item_type($item_extension);
+  
+  session_start();
+  $username = $_SESSION["username"];
 
-//TODO: να βάλω τα if statement σε δικές τους συναρτήσεις στο function.php    
-//TODO: see the uploading file section on https://www.w3schools.com/php/php_file_upload.asp
+  if (!is_allowed_item_extension($item_extension))
+  {
+    $errors[] = "This item cannot allowed to be upload.";
+  }
+
+  if($item_size > 20971520)
+  {
+    $errors[] = 'Item size must be excately 20 MB';
+  }
 
 
+  if(!empty($errors))
+  {
+    print_r($errors);
+  }
+  else
+  {
+    move_uploaded_file($item_tmp_name,"./users_items/$username/$item_type/$item_name");
+    $_SESSION['successfulUploadedItemMessage'] = "Your $item_type was successfully uploaded";
+    redirect_to("home.php");
+  }
+
+
+}
 
 ?>
