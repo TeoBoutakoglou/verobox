@@ -41,7 +41,7 @@ else
     
     move_uploaded_file($itemTempName, $itemPath);
     $_SESSION['successfulUploadedItemMessage'] = "$itemName was successfully uploaded";
-    redirect_to("home.php");
+    redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
   }
 
 
