@@ -33,7 +33,8 @@
         }
     }
     
-    if(isset($_SESSION["successfulUploadedItemMessage"])){
+    if(isset($_SESSION["successfulUploadedItemMessage"]))
+    {
         $successfulUploadedItemMessage = $_SESSION["successfulUploadedItemMessage"];
         echo "<br>" . $successfulUploadedItemMessage;
     }
