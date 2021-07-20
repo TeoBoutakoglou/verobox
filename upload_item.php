@@ -9,21 +9,22 @@ if(!isset($_FILES['itemToUpload']))
 else
 { 
   $errors = array();
-  $item_name = $_FILES['itemToUpload']['name'];
-  $item_size = $_FILES['itemToUpload']['size'];
-  $item_tmp_name = $_FILES['itemToUpload']['tmp_name'];
-  $item_extension = get_item_extension($item_name);
-  $item_type = get_item_type($item_extension);
+  $itemName = $_FILES['itemToUpload']['name'];
+  $itemSize = $_FILES['itemToUpload']['size'];
+  $itemTempName = $_FILES['itemToUpload']['tmp_name'];
+  $itemExtension = get_item_extension($itemName);
+  $itemType = get_item_type($itemExtension);
   
   session_start();
   $username = $_SESSION["username"];
+  $itemPath = "./users_items/$username/$itemType/$itemName";
 
-  if (!is_allowed_item_extension($item_extension))
+  if (!is_allowed_item_extension($itemExtension))
   {
     $errors[] = "This item cannot allowed to be upload.";
   }
 
-  if($item_size > 20971520)
+  if($itemSize > 20971520)
   {
     $errors[] = 'Item size must be excately 20 MB';
   }
@@ -35,8 +36,11 @@ else
   }
   else
   {
-    move_uploaded_file($item_tmp_name,"./users_items/$username/$item_type/$item_name");
-    $_SESSION['successfulUploadedItemMessage'] = "Your $item_type was successfully uploaded";
+    //TODO: upload_item_in_db();
+    //TODO: upload_item_in_filesystem();
+    
+    move_uploaded_file($itemTempName, $itemPath);
+    $_SESSION['successfulUploadedItemMessage'] = "$itemName was successfully uploaded";
     redirect_to("home.php");
   }
 
