@@ -102,4 +102,17 @@ function set_is_online($username, $value)
 }
 
 
+function get_item_extension($item)
+{
+    return strtolower(pathinfo($item,PATHINFO_EXTENSION));
+}
+
+
+function is_allowed_item_extension($itemExtension)
+{
+    $allowedExtensions = array("jpg", "mkv", "pdf", "doc");
+    return in_array($itemExtension, $allowedExtensions);
+}
+
+
 ?>
