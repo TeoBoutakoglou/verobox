@@ -61,7 +61,16 @@
         <input type="submit" value="Upload Item" name="submit">
     </form>
     <?php
-        get_all_user_items($username);
+        echo "<br>Your items<br>";
+        $items = get_all_user_items($username); //each row of $items contain one item
+        foreach ($items as $item)
+        {
+            $itemType = $item['item_type'];
+            $itemName = $item['item_name'];
+            $itemDateOfUpload = $item['date_of_upload'];
+            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload";
+        }
+        
     ?>
 
     <a href="home.php?_task=logout">logout</a>

@@ -181,15 +181,16 @@ function get_all_user_items($username)
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
     
+    $rows = array();
     if (mysqli_num_rows($result) > 0)
     {
-        // output data of each row
+        
         while($row = mysqli_fetch_assoc($result))
         {
-          //TODO: return the results in array form , not echo it.
-          echo $row["item_type"] ." name: " . $row["item_name"] . " - Date of upload: " . $row["date_of_upload"] . "<br>";
+            $rows[] = $row; //$row contains the properties of an item
         }
-      }
+    }
+    return $rows; //contains all items (array of arrays form)
 }
 
 ?>
