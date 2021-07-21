@@ -26,7 +26,7 @@
         {
             session_unset();
             session_destroy();
-            set_is_online($username, 0);
+            set_is_online($username, 0); //TODO: fix because clicking in logout execute this set_is_online and the one from the above else because the username index from $_SESSION exists
             session_start();
             $_SESSION["successfulLogoutMessage"] = $username . " you're successfully logout.";
             redirect_to('login.php');
