@@ -68,11 +68,12 @@
             $itemType = $item['item_type'];
             $itemName = $item['item_name'];
             $itemDateOfUpload = $item['date_of_upload'];
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload";
+            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload <br>";
         }
+
         
     ?>
-
+    <br>
     <a href="home.php?_task=logout">logout</a>
 
     </body>
