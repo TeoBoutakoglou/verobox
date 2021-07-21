@@ -36,6 +36,7 @@
     if(isset($_SESSION["successfulUploadedItemMessage"]))
     {
         $successfulUploadedItemMessage = $_SESSION["successfulUploadedItemMessage"];
+        unset($_SESSION['successfulUploadedItemMessage']);
         echo "<br>" . $successfulUploadedItemMessage;
     }
     
@@ -59,9 +60,9 @@
         <input type="file" name="itemToUpload" id="itemToUpload">
         <input type="submit" value="Upload Item" name="submit">
     </form>
-
-
-
+    <?php
+        get_all_user_items($username);
+    ?>
 
     <a href="home.php?_task=logout">logout</a>
 

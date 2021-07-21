@@ -162,7 +162,6 @@ function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
     $conn = connect_to_database();
     $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_type, date_of_upload, sharable)
               VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
-    echo $query;
     $result = mysqli_query($conn, $query);  
     mysqli_close($conn);
 }
@@ -171,6 +170,26 @@ function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 function upload_item_in_filesystem($itemTempName, $itemPath)
 {
     move_uploaded_file($itemTempName, $itemPath);
+}
+
+
+function get_all_user_items($username)
+{
+    $userId = get_user_id_by_username($username);
+    $conn = connect_to_database();
+    $query = 'SELECT item_name, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    
+    if (mysqli_num_rows($result) > 0)
+    {
+        // output data of each row
+        while($row = mysqli_fetch_assoc($result))
+        {
+          //TODO: return the results in array form , not echo it.
+          echo $row["item_type"] ." name: " . $row["item_name"] . " - Date of upload: " . $row["date_of_upload"] . "<br>";
+        }
+      }
 }
 
 ?>
