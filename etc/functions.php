@@ -27,7 +27,7 @@ function create_new_user_in_db($givenFirstName, $givenLastName, $givenUsername, 
     $query = 'INSERT INTO users (id, first_name, last_name, user_name, password, email, gender, date_of_birth, is_online)
               VALUES ("", "' . $givenFirstName .'","' . $givenLastName . '","' . $givenUsername . '","' . sha1($givenPassword) . '","' . $givenEmail . '","' . $givenGender . '","' . $dateOfBirth . '",' . 0 . ')';
     $result = mysqli_query($conn, $query);  
-            
+          
     mysqli_close($conn);
 }
 
@@ -110,14 +110,14 @@ function get_item_extension($item)
 
 function is_allowed_item_extension($itemExtension)
 {
-    $allowedExtensions = array("jpg", "mkv", "pdf", "doc", "log");
+    $allowedExtensions = array("jpg", "mkv", "pdf", "doc", "log", "txt");
     return in_array($itemExtension, $allowedExtensions);
 }
 
 
 function is__file($itemExtension)
 {
-    $fileExtensions = array("pdf", "doc", "log");
+    $fileExtensions = array("pdf", "doc", "log", "txt");
     return in_array($itemExtension, $fileExtensions);
 }
 
@@ -157,13 +157,13 @@ function get_user_id_by_username($username)
 }
 
 
-function upload_item_in_db($userId, $itemName, $itemPath, $itemType, $dateOfUpload)
+function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 {
     $conn = connect_to_database();
     $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_type, date_of_upload, sharable)
-              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '",' . $dateOfUpload . ')';
+              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
     echo $query;
-    //$result = mysqli_query($conn, $query);  
+    $result = mysqli_query($conn, $query);  
     mysqli_close($conn);
 }
 

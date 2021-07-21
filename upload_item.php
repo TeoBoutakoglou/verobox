@@ -37,7 +37,7 @@ else
   }
   else
   { //everything is OK, upload the item
-    upload_item_in_db($userId, $itemName, $itemPath, $itemType, $dateOfUpload);
+    upload_item_in_db($userId, $itemName, $itemPath, $itemType);
     upload_item_in_filesystem($itemTempName, $itemPath);
     
     $_SESSION['successfulUploadedItemMessage'] = "$itemName was successfully uploaded";
