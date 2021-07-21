@@ -144,4 +144,33 @@ function get_item_type($itemExtension)
 }
 
 
+function get_user_id_by_username($username)
+{
+    $conn = connect_to_database();
+    $query = 'SELECT id FROM users WHERE user_name = "' .$username. '"';
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $userId = $row['id'];
+
+    return $userId;
+}
+
+
+function upload_item_in_db($userId, $itemName, $itemPath, $itemType, $dateOfUpload)
+{
+    $conn = connect_to_database();
+    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_type, date_of_upload, sharable)
+              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '",' . $dateOfUpload . ')';
+    echo $query;
+    //$result = mysqli_query($conn, $query);  
+    mysqli_close($conn);
+}
+
+
+function upload_item_in_filesystem($itemTempName, $itemPath)
+{
+    move_uploaded_file($itemTempName, $itemPath);
+}
+
 ?>

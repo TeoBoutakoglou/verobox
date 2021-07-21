@@ -17,6 +17,7 @@ else
   
   session_start();
   $username = $_SESSION["username"];
+  $userId = get_user_id_by_username($username);
   $itemPath = "./users_items/$username/$itemType/$itemName";
 
   if (!is_allowed_item_extension($itemExtension))
@@ -35,13 +36,12 @@ else
     print_r($errors);
   }
   else
-  {
-    //TODO: upload_item_in_db();
-    //TODO: upload_item_in_filesystem();
+  { //everything is OK, upload the item
+    upload_item_in_db($userId, $itemName, $itemPath, $itemType, $dateOfUpload);
+    upload_item_in_filesystem($itemTempName, $itemPath);
     
-    move_uploaded_file($itemTempName, $itemPath);
     $_SESSION['successfulUploadedItemMessage'] = "$itemName was successfully uploaded";
-    redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
+    //redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
   }
 
 
