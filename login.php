@@ -29,6 +29,7 @@
     if(isset($_SESSION['successfulRegistrationMessage']))
     {
       $successfulRegistrationMessage = $_SESSION['successfulRegistrationMessage'];
+      unset($_SESSION['successfulRegistrationMessage']);
       echo $successfulRegistrationMessage;
     }
 
@@ -37,6 +38,7 @@
     if(isset($_SESSION['successfulLogoutMessage']))
     {
       $successfulLogoutMessage = $_SESSION['successfulLogoutMessage'];
+      unset($_SESSION['successfulLogoutMessage']);
       echo $successfulLogoutMessage;
     }
 

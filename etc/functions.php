@@ -27,7 +27,7 @@ function create_new_user_in_db($givenFirstName, $givenLastName, $givenUsername, 
     $query = 'INSERT INTO users (id, first_name, last_name, user_name, password, email, gender, date_of_birth, is_online)
               VALUES ("", "' . $givenFirstName .'","' . $givenLastName . '","' . $givenUsername . '","' . sha1($givenPassword) . '","' . $givenEmail . '","' . $givenGender . '","' . $dateOfBirth . '",' . 0 . ')';
     $result = mysqli_query($conn, $query);  
-            
+          
     mysqli_close($conn);
 }
 
@@ -86,9 +86,9 @@ function create_new_user_in_filesystem($username)
     chdir("users_items");
     create_folder($username);
     chdir($username);
-    create_folder("files");
-    create_folder("photos");
-    create_folder("videos");
+    create_folder("file");
+    create_folder("image");
+    create_folder("video");
 }
 
 
@@ -101,5 +101,99 @@ function set_is_online($username, $value)
     mysqli_close($conn);
 }
 
+
+function get_item_extension($item)
+{
+    return strtolower(pathinfo($item,PATHINFO_EXTENSION));
+}
+
+
+function is_allowed_item_extension($itemExtension)
+{
+    $allowedExtensions = array("pdf", "doc", "log", "txt", //Files
+                               "jpg", //Images
+                               "mkv", "mp4" //Videos
+                              );
+    return in_array($itemExtension, $allowedExtensions);
+}
+
+
+function is__file($itemExtension)
+{
+    $fileExtensions = array("pdf", "doc", "log", "txt");
+    return in_array($itemExtension, $fileExtensions);
+}
+
+
+function is_image($itemExtension)
+{
+    $imageExtensions = array("jpg");
+    return in_array($itemExtension, $imageExtensions);
+}
+
+
+function is_video($itemExtension)
+{
+    $videoExtensions = array("mkv", "mp4");
+    return in_array($itemExtension, $videoExtensions);
+}
+
+
+function get_item_type($itemExtension)
+{
+    if (is__file($itemExtension)) return 'file';
+    else if (is_image ($itemExtension)) return 'image';
+    else if (is_video($itemExtension)) return 'video';
+}
+
+
+function get_user_id_by_username($username)
+{
+    $conn = connect_to_database();
+    $query = 'SELECT id FROM users WHERE user_name = "' .$username. '"';
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $userId = $row['id'];
+
+    return $userId;
+}
+
+
+function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
+{
+    $conn = connect_to_database();
+    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_type, date_of_upload, sharable)
+              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
+    $result = mysqli_query($conn, $query);  
+    mysqli_close($conn);
+}
+
+
+function upload_item_in_filesystem($itemTempName, $itemPath)
+{
+    move_uploaded_file($itemTempName, $itemPath);
+}
+
+
+function get_all_user_items($username)
+{
+    $userId = get_user_id_by_username($username);
+    $conn = connect_to_database();
+    $query = 'SELECT item_name, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    
+    $rows = array();
+    if (mysqli_num_rows($result) > 0)
+    {
+        
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $rows[] = $row; //$row contains the properties of an item
+        }
+    }
+    return $rows; //contains all items (array of arrays form)
+}
 
 ?>
