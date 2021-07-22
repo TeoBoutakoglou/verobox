@@ -180,7 +180,7 @@ function get_all_user_items($username)
 {
     $userId = get_user_id_by_username($username);
     $conn = connect_to_database();
-    $query = 'SELECT item_name, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
+    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
     
