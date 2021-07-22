@@ -58,9 +58,10 @@
     <form action="upload_item.php" method="POST" enctype="multipart/form-data">
         Select item to upload:
         <input type="file" name="itemToUpload" id="itemToUpload">
-        <input type="submit" value="Upload Item" name="submit">
+        <input type="submit" value="Upload" name="submit">
     </form>
     <?php
+        //print all items from DB
         echo "<br>Your items<br>";
         $items = get_all_user_items($username); //each row of $items contain one item
         foreach ($items as $item)

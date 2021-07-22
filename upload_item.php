@@ -25,9 +25,9 @@ else
     $errors[] = "This item cannot allowed to be upload.";
   }
 
-  if($itemSize > 20971520)
+  if($itemSize > 89128960)
   {
-    $errors[] = 'Item size must be excately 20 MB';
+    $errors[] = 'Item size must be excately 85 MB';
   }
 
 

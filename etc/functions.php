@@ -110,7 +110,10 @@ function get_item_extension($item)
 
 function is_allowed_item_extension($itemExtension)
 {
-    $allowedExtensions = array("jpg", "mkv", "pdf", "doc", "log", "txt");
+    $allowedExtensions = array("pdf", "doc", "log", "txt", //Files
+                               "jpg", //Images
+                               "mkv", "mp4" //Videos
+                              );
     return in_array($itemExtension, $allowedExtensions);
 }
 
@@ -131,7 +134,7 @@ function is_image($itemExtension)
 
 function is_video($itemExtension)
 {
-    $videoExtensions = array("mkv");
+    $videoExtensions = array("mkv", "mp4");
     return in_array($itemExtension, $videoExtensions);
 }
 
