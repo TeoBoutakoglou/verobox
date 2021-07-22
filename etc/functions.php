@@ -96,7 +96,7 @@ function set_is_online($username, $value)
 {
     $conn = connect_to_database();
     $query = 'UPDATE users SET is_online = ' . $value . ' WHERE user_name = "' . $username . '"';
-    echo $query;
+    //echo $query;
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
 }

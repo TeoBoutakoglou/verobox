@@ -2,7 +2,7 @@
 
 include_once './etc/functions.php';
 
-if(!isset($_FILES['itemToUpload']))
+if(!isset($_FILES['itemToUpload']) || empty($_FILES['itemToUpload']['name']))
 {
   echo "Please select an item first";
 } 
