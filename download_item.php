@@ -26,7 +26,7 @@
 
         //Read the size of the item
         readfile($path,true);
-        $_SESSION['downloadItemStatusMessage'] = "Your download will start shortly...";
+        //the item start to download and after the status message shows up //$_SESSION['downloadItemStatusMessage'] = "Your download will start shortly..."; //TODO: issue. does not show this message in home.php probably because the home.php not refreshed or not leaving the home.php at all
     }
     redirect_to("home.php");
 
