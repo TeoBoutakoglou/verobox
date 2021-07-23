@@ -1,24 +1,28 @@
 <?php
     include_once './etc/functions.php';
-
+    
+    session_start();
+    
     if(!isset($_GET['path']))
     {
-        echo "First select an item.";
-        // session_start()
-        // $_SESSION['deleteItemStatus'] = "First select an item.";
-        // redirect_to("home.php");
+        
+        $_SESSION['deleteItemStatusMessage'] = "First select an item for delete.";
     }
     else
     {
         $path = $_GET['path'];
 
         //delete the item first from filesystem and after from DB
-        delete_item_from_filesystem($path);
-        delete_item_from_db($path);
+        $deleteFromFilesystemOK = delete_item_from_filesystem($path);
+        $deleteFromDBOK = delete_item_from_db($path);
 
-        //Return to home.php
-        redirect_to("home.php");
+        if($deleteFromFilesystemOK && $deleteFromDBOK)
+            $_SESSION['deleteItemStatusMessage'] = basename($path) . " has been deleted";
+        else
+            $_SESSION['deleteItemStatusMessage'] = "Error: cannot delete " . basename($path);
     }
 
+    //Return to home.php
+    redirect_to("home.php");
 
 ?>

@@ -2,49 +2,40 @@
 
 include_once './etc/functions.php';
 
+session_start();
 if(!isset($_FILES['itemToUpload']) || empty($_FILES['itemToUpload']['name']))
 {
-  echo "Please select an item first";
+  $_SESSION['uploadedItemStatusMessage'] = "Please select an item first";
 } 
 else
 { 
-  $errors = array();
   $itemName = $_FILES['itemToUpload']['name'];
   $itemSize = $_FILES['itemToUpload']['size'];
   $itemTempName = $_FILES['itemToUpload']['tmp_name'];
   $itemExtension = get_item_extension($itemName);
   $itemType = get_item_type($itemExtension);
-  
-  session_start();
   $username = $_SESSION["username"];
   $userId = get_user_id_by_username($username);
   $itemPath = "./users_items/$username/$itemType/$itemName";
 
   if (!is_allowed_item_extension($itemExtension))
   {
-    $errors[] = "This item cannot allowed to be upload.";
+    $_SESSION['uploadedItemStatusMessage'] = "This item cannot allowed to be upload.";
   }
-
-  if($itemSize > 89128960)
+  else if($itemSize > 89128960)
   {
-    $errors[] = 'Item size must be excately 85 MB';
+    $_SESSION['uploadedItemStatusMessage'] = 'Item size must be excately 85 MB';
   }
 
 
-  if(!empty($errors))
-  {
-    print_r($errors);
-  }
-  else
+  if(empty($_SESSION['uploadedItemStatusMessage']))
   { //everything is OK, upload the item
     upload_item_in_db($userId, $itemName, $itemPath, $itemType);
     upload_item_in_filesystem($itemTempName, $itemPath);
     
-    $_SESSION['successfulUploadedItemMessage'] = "$itemName was successfully uploaded";
-    redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
+    $_SESSION['uploadedItemStatusMessage'] = "$itemName was successfully uploaded";
   }
-
-
 }
+redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
 
 ?>

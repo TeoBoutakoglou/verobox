@@ -206,23 +206,13 @@ function get_all_user_items($username)
 
 function delete_item_from_filesystem($path)
 {
-    //Check the item path exists or not
-    if(file_exists($path))
-    {
-        // Use unlink() function to delete the item 
-        if(!unlink($path))
-        { 
-            echo "$path cannot be deleted due to an error"; 
-        } 
-        else
-        { 
-            echo basename($path) . " has been deleted"; 
-        } 
+    // Use unlink() function to delete the item 
+    if(!unlink($path))
+    { 
+        return false; 
     }
     else
-    {
-        echo "Item path does not exist.";
-    }
+        return true;
 }
 
 
@@ -233,10 +223,13 @@ function delete_item_from_db($path)
     
     if (!mysqli_query($conn, $query))
     {
-        echo "Error deleting $path: " . mysqli_error($conn);
+        $result = false;
     }
+    else
+        $result = true;
      
     mysqli_close($conn);
+    return $result;
 }
 
 ?>

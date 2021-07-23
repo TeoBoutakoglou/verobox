@@ -1,10 +1,6 @@
 <?php
     include_once './etc/functions.php';
 
-
-    //messages variables
-    $successfulUploadedItemMessage = '';
-
     session_start();
         
     if(!isset($_SESSION["username"])){
@@ -32,12 +28,29 @@
         }
     }
     
-    if(isset($_SESSION["successfulUploadedItemMessage"]))
+    //GET INFORMATION MESSAGES
+    if(isset($_SESSION["uploadedItemStatusMessage"]))
     {
-        $successfulUploadedItemMessage = $_SESSION["successfulUploadedItemMessage"];
-        unset($_SESSION['successfulUploadedItemMessage']);
-        echo "<br>" . $successfulUploadedItemMessage;
+        $uploadedItemStatusMessage = $_SESSION["uploadedItemStatusMessage"];
+        unset($_SESSION['uploadedItemStatusMessage']);
+        print_r($uploadedItemStatusMessage);
     }
+
+    if(isset($_SESSION["deleteItemStatusMessage"]))
+    {
+        $deleteItemStatusMessage = $_SESSION["deleteItemStatusMessage"];
+        unset($_SESSION['deleteItemStatusMessage']);
+        print_r($deleteItemStatusMessage);
+    }
+
+    if(isset($_SESSION["downloadItemStatusMessage"]))
+    {
+        $downloadItemStatusMessage = $_SESSION["downloadItemStatusMessage"];
+        unset($_SESSION['downloadItemStatusMessage']);
+        print_r($downloadItemStatusMessage);
+    }
+
+
     
 
 ?>
