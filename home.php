@@ -1,4 +1,3 @@
-<!DOCTYPE HTML> 
 <?php
     include_once './etc/functions.php';
 
@@ -43,7 +42,7 @@
 
 ?>
 
-
+<!DOCTYPE HTML> 
 <html>
     <head>
         <title><?php echo $username?> - Verobox</title>
@@ -70,8 +69,9 @@
             $itemPath = $item['item_path'];
             $itemType = $item['item_type'];
             $itemDateOfUpload = $item['date_of_upload'];
-            $downloadLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadLink<br>";
+            $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
+            $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
+            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
         }
 
         
