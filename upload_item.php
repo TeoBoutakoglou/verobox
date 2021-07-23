@@ -28,7 +28,7 @@ else
   }
 
 
-  if(empty($_SESSION['uploadedItemStatusMessage']))
+  if(empty($_SESSION['uploadedItemStatusMessage'])) //no errors
   { //everything is OK, upload the item
     upload_item_in_db($userId, $itemName, $itemPath, $itemType);
     upload_item_in_filesystem($itemTempName, $itemPath);

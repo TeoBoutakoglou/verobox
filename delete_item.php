@@ -19,7 +19,7 @@
         if($deleteFromFilesystemOK && $deleteFromDBOK)
             $_SESSION['deleteItemStatusMessage'] = basename($path) . " has been deleted";
         else
-            $_SESSION['deleteItemStatusMessage'] = "Error: cannot delete " . basename($path);
+            $_SESSION['deleteItemStatusMessage'] = "Error: cannot delete. Maybe " . basename($path) . " does not existed";
     }
 
     //Return to home.php
