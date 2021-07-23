@@ -66,10 +66,12 @@
         $items = get_all_user_items($username);                                             //each row of $items contains one item
         foreach ($items as $item)
         {
-            $itemType = $item['item_type'];
             $itemName = $item['item_name'];
+            $itemPath = $item['item_path'];
+            $itemType = $item['item_type'];
             $itemDateOfUpload = $item['date_of_upload'];
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload <br>";
+            $downloadLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
+            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadLink<br>";
         }
 
         
