@@ -1,19 +1,19 @@
 <?php
+    include_once './etc/functions.php';
 
-if(!isset($_GET['path']))
-{
-    echo "First select an item.";
-}
-else
-{
-    $path = $_GET['path'];
+    session_start();
 
-    //Clear the cache
-    clearstatcache();
-
-    //Check the item path exists or not
-    if(file_exists($path))
+    if(!isset($_GET['path']))
     {
+        $_SESSION['downloadItemStatusMessage'] = "First select an item.";
+    }
+    else
+    {
+        $path = $_GET['path'];
+
+        //Clear the cache
+        clearstatcache();
+
         //Define header information
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
@@ -26,14 +26,8 @@ else
 
         //Read the size of the item
         readfile($path,true);
-
-        //Terminate from the script
-        die();
+        //the item start to download and after the status message shows up //$_SESSION['downloadItemStatusMessage'] = "Your download will start shortly..."; //TODO: issue. does not show this message in home.php probably because the home.php not refreshed or not leaving the home.php at all
     }
-    else
-    {
-        echo "Item path does not exist.";
-    }
-}
+    redirect_to("home.php");
 
 ?>

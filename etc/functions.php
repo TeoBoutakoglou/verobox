@@ -67,8 +67,15 @@ function get_password_by_username($username)
 
 function redirect_to($target)
 {
-    header("Location: ./" . $target);
-    die();
+    if (!headers_sent())
+    {
+        exit(header("Location: ./" . $target));
+    }
+    else
+    {
+        echo "Cannot autoredirect Please go to <a href='" . $target . "'>$target</a>";
+    }
+    
 }
 
 
@@ -194,6 +201,35 @@ function get_all_user_items($username)
         }
     }
     return $rows; //contains all items (array of arrays form)
+}
+
+
+function delete_item_from_filesystem($path)
+{
+    // Use unlink() function to delete the item 
+    if(!unlink($path))
+    { 
+        return false; 
+    }
+    else
+        return true;
+}
+
+
+function delete_item_from_db($path)
+{
+    $conn = connect_to_database();
+    $query = 'DELETE FROM items WHERE item_path = "' . $path . '"';
+    
+    if (!mysqli_query($conn, $query))
+    {
+        $result = false;
+    }
+    else
+        $result = true;
+     
+    mysqli_close($conn);
+    return $result;
 }
 
 ?>
