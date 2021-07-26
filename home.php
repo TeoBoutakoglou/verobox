@@ -60,7 +60,7 @@
 <html>
     <head>
         <title><?php echo $username?> - Verobox</title>
-        <link rel="stylesheet" href="styles/home/css/style.css">
+        <link rel="stylesheet" type="text/css" href="styles/home/css/style.css">
     </head>
 
 

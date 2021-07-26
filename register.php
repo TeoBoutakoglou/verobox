@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Register - Verobox</title>
-    <link rel="stylesheet" href="styles/register/css/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/register/css/style.css">
   </head>
 
   <?php
