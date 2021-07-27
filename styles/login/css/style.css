@@ -76,6 +76,7 @@ body{
     cursor: pointer;
     background: #ffc107;
     color: #000;
+    transition: 0.09s ease-in-out;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -93,14 +94,10 @@ body{
 
 .login-box a:hover{
     color: #f2bf05;
+    transition: 0.08s ease-in-out;
 }
-
-
-
 
 .error{
     color: #ff0000;
     font-weight: bold;
 }
-
-
