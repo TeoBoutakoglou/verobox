@@ -79,9 +79,9 @@
 
     <div class="login-box">
         
-        <img src="E:\xampp\htdocs\styles\login\images\login-user-avatar-icon.jpg" class="login-avatar">
+        <img src=".\styles\login\images\login-user-avatar-icon.png" class="login-avatar">
         <!--welcome to login page message-->
-        <h2>Welcome to Verobox!</h2>
+        <div class="welcome-message">Verobox</div>
 
         <!--login form-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">

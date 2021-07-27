@@ -20,7 +20,7 @@ else
 
   if (!is_allowed_item_extension($itemExtension))
   {
-    $_SESSION['uploadedItemStatusMessage'] = "This item cannot allowed to be upload.";
+    $_SESSION['uploadedItemStatusMessage'] = "These types of items is prohibited to upload.";
   }
   else if($itemSize > 89128960)
   {

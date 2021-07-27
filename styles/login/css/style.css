@@ -32,11 +32,12 @@ body{
     left: calc(50% - 50px);
 }
 
-h2{
+.welcome-message{
     margin: 0;
     padding: 0 0 20px;
     text-align: center;
-    font-size: 22px;
+    font-size: 29px;
+    font-weight: bold;
 }
 
 .login-box label{
@@ -64,8 +65,8 @@ h2{
     border: none;
     outline: none;
     height: 40px;
-    background: #fb2525;
-    color: #ffffff;
+    background: #ffffff;
+    color: #f46665;
     font-size: 18px;
     border-radius: 20px;
 }
@@ -81,7 +82,7 @@ h2{
     font-size: 16px;
     font-weight: bold;
     line-height: 20px;
-    color: darkgray;
+    color: #eeeeee;
 }
 
 .login-box a:hover{
