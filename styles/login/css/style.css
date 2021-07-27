@@ -78,6 +78,11 @@ body{
     color: #000;
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #dce0e3;
+    opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
+  }
+
 .login-box a{
     text-decoration: none;
     font-size: 16px;
@@ -87,7 +92,7 @@ body{
 }
 
 .login-box a:hover{
-    color: #ffc107;
+    color: #f2bf05;
 }
 
 

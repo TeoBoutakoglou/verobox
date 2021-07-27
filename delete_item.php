@@ -5,7 +5,6 @@
     
     if(!isset($_GET['path']))
     {
-        
         $_SESSION['deleteItemStatusMessage'] = "First select an item for delete.";
     }
     else
