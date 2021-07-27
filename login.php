@@ -85,10 +85,10 @@
 
         <!--login form-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <label for="lblLoginUsername">Username:</label><br>
+          <label for="lblLoginUsername">Username:</label>
           <input type="text" id="username" name="loginUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required" autofocus>
           <span class="error"><?php echo $usernameErr;?></span><br>
-          <label for="lblLoginPassword">Password:</label><br>
+          <label for="lblLoginPassword">Password:</label>
           <input type="password" id="password" name="loginPassword" placeholder="Enter your password"  required="password is required">
           <span class="error"><?php echo $passwordErr;?></span><br>
           <input type="submit" value="Login">
