@@ -6,7 +6,7 @@
   </head>
 
   <?php
-    include_once './etc/functions.php';
+    include_once './etc/php/functions.php';
 
     $givenFirstName = $givenLastName = $givenUsername = $givenPassword = $givenEmail = $givenDayOfBirth = $givenMonthOfBirth = $givenYearOfBirth = $givenGender = null;
     $usernameErr = $passwordErr = $emailErr = '';

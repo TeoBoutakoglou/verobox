@@ -1,6 +1,6 @@
 <!--check credentials for login--> 
 <?php
-  include_once './etc/functions.php';
+  include_once './etc/php/functions.php';
 
   //error status variables
   $usernameErr = $passwordErr = "";

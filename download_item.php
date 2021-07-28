@@ -1,5 +1,5 @@
 <?php
-    include_once './etc/functions.php';
+    include_once './etc/php/functions.php';
 
     session_start();
 

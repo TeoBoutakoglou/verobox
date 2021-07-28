@@ -1,6 +1,6 @@
 <?php
 
-include_once './etc/functions.php';
+include_once './etc/php/functions.php';
 
 session_start();
 if(!isset($_FILES['itemToUpload']) || empty($_FILES['itemToUpload']['name']))
