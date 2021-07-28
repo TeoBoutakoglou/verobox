@@ -5,7 +5,7 @@ include_once './etc/php/functions.php';
 session_start();
 if(!isset($_FILES['itemToUpload']) || empty($_FILES['itemToUpload']['name']))
 {
-  $_SESSION['uploadedItemStatusMessage'] = "Please select an item first";
+  set_flash_message("uploadedItemStatusMessage", "Please select an item first");
 } 
 else
 { 
@@ -20,20 +20,20 @@ else
 
   if (!is_allowed_item_extension($itemExtension))
   {
-    $_SESSION['uploadedItemStatusMessage'] = "These types of items is prohibited to upload.";
+    set_flash_message("uploadedItemStatusMessage", "These types of items is prohibited to upload.");
   }
   else if($itemSize > 89128960)
   {
-    $_SESSION['uploadedItemStatusMessage'] = 'Item size must be excately 85 MB';
+    set_flash_message("uploadedItemStatusMessage", 'Item size must be excately 85 MB');
   }
 
 
-  if(empty($_SESSION['uploadedItemStatusMessage'])) //no errors
+  if(empty(get_flash_message('uploadedItemStatusMessage'))) //empty uploadedItemStatusMessage yet means no errors
   { //everything is OK, upload the item
     upload_item_in_db($userId, $itemName, $itemPath, $itemType);
     upload_item_in_filesystem($itemTempName, $itemPath);
     
-    $_SESSION['uploadedItemStatusMessage'] = "$itemName was successfully uploaded";
+    set_flash_message("uploadedItemStatusMessage", "$itemName was successfully uploaded");
   }
 }
 redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed

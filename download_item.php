@@ -5,7 +5,7 @@
 
     if(!isset($_GET['path']))
     {
-        $_SESSION['downloadItemStatusMessage'] = "First select an item.";
+        set_flash_message('downloadItemStatusMessage', "First select an item.");
     }
     else
     {

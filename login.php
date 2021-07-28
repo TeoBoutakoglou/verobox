@@ -15,23 +15,19 @@
   }
 
   //Get successful registration message
-  if(isset($_SESSION['successfulRegistrationMessage']))
-  {
-    $successfulRegistrationMessage = $_SESSION['successfulRegistrationMessage'];
-    unset($_SESSION['successfulRegistrationMessage']);
-    echo $successfulRegistrationMessage;
-  }
-
+  echo get_flash_message('successfulRegistrationMessage');
 
   //Get successful logout message
-  if(isset($_SESSION['successfulLogoutMessage']))
-  {
-    $successfulLogoutMessage = $_SESSION['successfulLogoutMessage'];
-    unset($_SESSION['successfulLogoutMessage']);
-    echo $successfulLogoutMessage;
-  }
+  ?>
 
-
+  
+  <div class="toast-logout hide">
+    <span class="message"> logout success. replace with php message. </span> <?php// echo get_flash_message('successfulLogoutMessage');?>
+  </div>
+  
+  
+  
+  <?php
   session_unset();
   session_destroy();
 
@@ -54,7 +50,7 @@
       }
       else
       {
-        //redirecting to home page
+        //Credentials are OK. Redirecting to home page
         session_start();
         $_SESSION["username"] = $givenUsername;
         redirect_to ('home.php');
@@ -71,11 +67,13 @@
 <!DOCTYPE HTML> 
 <html>
   <head>
-    <title>Login - Verobox</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="styles/login/css/style.css">
+    <title>Login - Verobox</title>
   </head>
 
-  <body>
+  <body id="myDIV">
 
     <div class="login-box">
         
@@ -97,6 +95,28 @@
         <a href='./register.php'>Δεν έχεις λογαριασμό?</a>
     </div>
 
+
+
+
+    <!--JAVASCRIPT-->
+    <script>
+    document.getElementById("myDIV").onload = function() {myFunction()};
+    function myFunction(){
+      var element = document.getElementById("myDIV");
+      element.classList.add("show");
+      element.classList.add("alert");
+      element.classList.remove("hide");
+      //$('.toast-logout').addClass("show");
+      //$('.toast-logout').addClass("alert");
+      //$('.toast-logout').removeClass("hide");
+      setTimeout(function(){
+        element.classList.remove("show");
+        element.classList.add("hide");
+        // $('.toast-logout').removeClass("show");
+        // $('.toast-logout').addClass("hide");
+      }, 5000);
+    }
+  </script>
 
   </body>
 </html>

@@ -7,6 +7,7 @@ body{
     background-size: cover;
     background-position: center;
     font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
 }
 
 .login-box{
@@ -100,4 +101,65 @@ body{
 .error{
     color: #ff0000;
     font-weight: bold;
+}
+
+.toast-logout{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background: rgb(106, 168, 126);
+    padding: 15px 40px;
+    border-radius: 5px;
+    border-left: 6px solid rgb(28, 78, 28);
+    opacity: 0;
+}
+
+.message{
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(43, 121, 43);
+    margin: 0 20px;
+    user-select: none;
+}
+
+.toast-logout.alert{
+    opacity: 1;
+}
+
+.toast-logout.show{
+    animation: show_slide 0.7s ease forwards;
+}
+
+@keyframes show_slide{
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(5px);
+    }
+}
+
+.toast-logout.hide{
+    animation: hide_slide 0.7s ease forwards;
+}
+
+@keyframes hide_slide{
+    0%{
+        transform: translateX(5px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(100%);
+    }
 }

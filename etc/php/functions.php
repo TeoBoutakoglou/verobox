@@ -232,4 +232,19 @@ function delete_item_from_db($path)
     return $result;
 }
 
+function get_flash_message($sessionIndexName)
+{
+    if(isset($_SESSION[$sessionIndexName]))
+    {
+        $message = $_SESSION[$sessionIndexName];
+        unset($_SESSION[$sessionIndexName]);
+        return $message;
+    }
+}
+
+function set_flash_message($sessionIndexName, $message)
+{
+    $_SESSION[$sessionIndexName] = $message;
+}
+
 ?>
