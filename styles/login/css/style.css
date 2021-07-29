@@ -103,30 +103,30 @@ body{
     font-weight: bold;
 }
 
-.toast-logout{
+.toast{
     position: absolute;
     top: 15px;
     right: 0;
-    background: rgb(106, 168, 126);
+    background: #a5c8b2;
     padding: 15px 40px;
     border-radius: 5px;
-    border-left: 6px solid rgb(28, 78, 28);
+    border-left: 4px solid #3b5d42;
     opacity: 0;
 }
 
 .message{
     font-size: 18px;
     font-weight: bold;
-    color: rgb(43, 121, 43);
+    color: #3b5d42;
     margin: 0 20px;
     user-select: none;
 }
 
-.toast-logout.alert{
+.toast.alert{
     opacity: 1;
 }
 
-.toast-logout.show{
+.toast.show{
     animation: show_slide 0.7s ease forwards;
 }
 
@@ -145,7 +145,7 @@ body{
     }
 }
 
-.toast-logout.hide{
+.toast.hide{
     animation: hide_slide 0.7s ease forwards;
 }
 

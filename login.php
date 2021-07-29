@@ -13,16 +13,11 @@
   {
     redirect_to("home.php");
   }
+?>
 
-  //Get successful registration message
-  echo get_flash_message('successfulRegistrationMessage');
-
-  //Get successful logout message
-  ?>
-
-  
-  <div class="toast-logout hide">
-    <span class="message"> logout success. replace with php message. </span> <?php// echo get_flash_message('successfulLogoutMessage');?>
+  <!--Get successful logout and registration message in a toast-->
+  <div class="toast hide" id="toastId">
+    <span class="message"><?php echo get_flash_message('successfulLogoutMessage'); echo get_flash_message('successfulRegistrationMessage');?></span> 
   </div>
   
   
@@ -70,10 +65,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="styles/login/css/style.css">
+    <script src="./etc/js/functions.js"></script>
     <title>Login - Verobox</title>
   </head>
 
-  <body id="myDIV">
+  <body id="body">
 
     <div class="login-box">
         
@@ -100,23 +96,8 @@
 
     <!--JAVASCRIPT-->
     <script>
-    document.getElementById("myDIV").onload = function() {myFunction()};
-    function myFunction(){
-      var element = document.getElementById("myDIV");
-      element.classList.add("show");
-      element.classList.add("alert");
-      element.classList.remove("hide");
-      //$('.toast-logout').addClass("show");
-      //$('.toast-logout').addClass("alert");
-      //$('.toast-logout').removeClass("hide");
-      setTimeout(function(){
-        element.classList.remove("show");
-        element.classList.add("hide");
-        // $('.toast-logout').removeClass("show");
-        // $('.toast-logout').addClass("hide");
-      }, 5000);
-    }
-  </script>
+      document.getElementById("body").onload = function() {toast("toastId")};
+    </script>
 
   </body>
 </html>
