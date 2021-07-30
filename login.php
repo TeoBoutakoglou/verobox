@@ -4,6 +4,7 @@
 
   //error status variables
   $usernameErr = $passwordErr = "";
+  //given values variables
   $givenUsername =  $givenPassword = "";
 
   session_start();
@@ -41,7 +42,7 @@
       
       if(sha1($givenPassword) != $dbPassword)
       {
-        $passwordErr = 'wrong password';
+        $passwordErr = "The password isn't correct";
       }
       else
       {
@@ -53,7 +54,7 @@
     }
     else
     {
-      $usernameErr = 'no such username';
+      $usernameErr = "$givenUsername doesn't exist";
     }
   }
 
@@ -79,12 +80,10 @@
 
         <!--login form-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <label for="lblLoginUsername">Username:</label>
           <input type="text" id="username" name="loginUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required" autofocus>
-          <span class="error"><?php echo $usernameErr;?></span><br>
-          <label for="lblLoginPassword">Password:</label>
+          <div class="error"><?php echo $usernameErr;?></div><br>
           <input type="password" id="password" name="loginPassword" placeholder="Enter your password"  required="password is required">
-          <span class="error"><?php echo $passwordErr;?></span><br>
+          <div class="error"><?php echo $passwordErr;?></div><br>
           <input type="submit" value="Login">
         </form>
 
