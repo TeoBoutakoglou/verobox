@@ -1,9 +1,7 @@
 function toast(elementId){
-    var text = document.getElementsByClassName("message")[0].textContent;
+    var text = document.getElementsByClassName("toast-message")[0].textContent;
     
-    if(text === "")
-        console.log("text is empty. Not run toast")
-    else
+    if(!(text === ""))
     {
         var element = document.getElementById(elementId);
         element.classList.add("show");
