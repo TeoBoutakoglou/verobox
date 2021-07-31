@@ -18,7 +18,7 @@
 
   <!--Get successful logout and registration message in a toast-->
   <div class="toast hide" id="toastId">
-    <span class="message"><?php echo get_flash_message('successfulLogoutMessage'); echo get_flash_message('successfulRegistrationMessage');?></span> 
+    <span class="toast-message"><?php echo get_flash_message('successfulLogoutMessage'); echo get_flash_message('successfulRegistrationMessage');?></span> 
   </div>
   
   
@@ -66,6 +66,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="styles/login/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./etc/js/functions.js"></script>
     <title>Login - Verobox</title>
   </head>
@@ -80,14 +81,23 @@
 
         <!--login form-->
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-          <input type="text" id="username" name="loginUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required" autofocus>
-          <div class="error"><?php echo $usernameErr;?></div><br>
-          <input type="password" id="password" name="loginPassword" placeholder="Enter your password"  required="password is required">
-          <div class="error"><?php echo $passwordErr;?></div><br>
+          
+          <div class="input-box">
+            <i class="fa fa-user"></i>
+            <input type="text" id="username" name="loginUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required" autofocus>
+          </div>
+          
+          <div class="input-box">
+            <i class="fa fa-key"></i>
+            <input type="password" id="password" name="loginPassword" placeholder="Enter your password"  required="password is required">
+          </div>
+          
           <input type="submit" value="Login">
         </form>
 
         <a href='./register.php'>Δεν έχεις λογαριασμό?</a>
+
+        <div class="input-error"><?php echo $usernameErr; echo $passwordErr;?></div>
     </div>
 
 

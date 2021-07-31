@@ -21,7 +21,7 @@ body{
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
-    border-radius: 50px;
+    border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -40,6 +40,7 @@ body{
     text-align: center;
     font-size: 29px;
     font-weight: bold;
+    user-select: none;
 }
 
 .login-box label{
@@ -48,22 +49,28 @@ body{
     font-weight: bold;
 }
 
-.login-box input{
-    width: 100%;
-    margin-bottom: 20px;
+.fa{
+    padding-left: 3px;
+}
+
+.input-box{
+    border-bottom: 1px solid white;
+    margin-bottom: 40px;
+    padding-bottom: 8px;
 }
 
 .login-box input[type="text"], input[type="password"]{
+    width: 85%;
+    padding-left: 10px;
     border: none;
-    border-bottom: 1px solid #ffffff;
-    background: transparent;
     outline: none;
-    height: 40px;
+    background: transparent;
     color: #ffffff;
     font-size: 16px;
 }
 
 .login-box input[type="submit"]{
+    width: 100%;
     border: none;
     outline: none;
     height: 40px;
@@ -71,6 +78,7 @@ body{
     color: DodgerBlue;
     font-size: 18px;
     border-radius: 20px;
+    margin-bottom: 15px;
 }
 
 .login-box input[type="submit"]:hover{
@@ -89,7 +97,7 @@ body{
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
-    line-height: 20px;
+    line-height: 10px;
     color: #eeeeee;
 }
 
@@ -98,7 +106,7 @@ body{
     transition: 0.08s ease-in-out;
 }
 
-.error{
+.input-error{
     position: absolute;
     width: 346px;
     padding: 0;
@@ -108,7 +116,8 @@ body{
     color: #ffffff;
     font-weight: bold;
     text-align: center;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 25px 25px 0px 0px;
+    user-select: none;
 }
 
 .toast{
@@ -120,9 +129,10 @@ body{
     border-left: 5px solid #3b5d42;
     opacity: 0;
     border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.message{
+.toast-message{
     font-size: 18px;
     font-weight: bold;
     color: #3b5d42;
