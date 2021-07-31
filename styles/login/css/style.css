@@ -43,12 +43,6 @@ body{
     user-select: none;
 }
 
-.login-box label{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-}
-
 .fa{
     padding-left: 3px;
 }

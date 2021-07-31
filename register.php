@@ -70,7 +70,7 @@
 
       //redirect to login page after registration
       session_start();
-      set_flash_message('successfulRegistrationMessage', $givenUsername . ', your account was successfully created, please login to start');
+      set_toast_message('successfulRegistrationMessage', $givenUsername . ', your account was successfully created, please login to start');
       redirect_to('login.php');
     }
   

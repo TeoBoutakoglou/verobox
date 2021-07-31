@@ -24,15 +24,15 @@
             session_destroy();
             set_is_online($username, 0); //TODO: fix because clicking in logout execute this set_is_online and the one from the above else because the username index from $_SESSION exists
             session_start();
-            set_flash_message('successfulLogoutMessage', $username . ", you're successfully logout.");
+            set_toast_message('successfulLogoutMessage', $username . ", you're successfully logout.");
             redirect_to('login.php');
         }
     }
     
     //GET FLASH INFORMATION MESSAGES
-    echo get_flash_message("uploadedItemStatusMessage");
-    echo get_flash_message("deleteItemStatusMessage");
-    echo get_flash_message("downloadItemStatusMessage");
+    echo get_toast_message("uploadedItemStatusMessage");
+    echo get_toast_message("deleteItemStatusMessage");
+    echo get_toast_message("downloadItemStatusMessage");
 
 ?>
 

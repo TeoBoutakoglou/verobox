@@ -5,7 +5,7 @@
 
     if(!isset($_GET['path']))
     {
-        set_flash_message('downloadItemStatusMessage', "First select an item.");
+        set_toast_message('downloadItemStatusMessage', "First select an item.");
     }
     else
     {

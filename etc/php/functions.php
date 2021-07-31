@@ -232,7 +232,7 @@ function delete_item_from_db($path)
     return $result;
 }
 
-function get_flash_message($sessionIndexName)
+function get_toast_message($sessionIndexName)
 {
     if(isset($_SESSION[$sessionIndexName]))
     {
@@ -242,7 +242,7 @@ function get_flash_message($sessionIndexName)
     }
 }
 
-function set_flash_message($sessionIndexName, $message)
+function set_toast_message($sessionIndexName, $message)
 {
     $_SESSION[$sessionIndexName] = $message;
 }

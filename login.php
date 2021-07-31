@@ -18,7 +18,7 @@
 
   <!--Get successful logout and registration message in a toast-->
   <div class="toast hide" id="toastId">
-    <span class="toast-message"><?php echo get_flash_message('successfulLogoutMessage'); echo get_flash_message('successfulRegistrationMessage');?></span> 
+    <span class="toast-message"><?php echo get_toast_message('successfulLogoutMessage'); echo get_toast_message('successfulRegistrationMessage');?></span> 
   </div>
   
   
