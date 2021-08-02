@@ -1,4 +1,102 @@
-.error{
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #e1e5e8;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
+}
+
+.register-box{
+    width: 850px;
+    height: 500px;
+    background: DodgerBlue;
+    color: #ffffff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    display: inline-block;
+    padding: 70px 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.register-avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+.register-message{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 29px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.register-box .input-box{
+    border-bottom: 1px solid white;
+    margin: 40px;
+    padding-bottom: 8px;
+}
+
+.register-box input[type="text"], .register-box input[type="password"]{
+    width: 85%;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.register-box .left-components{
+    background-color: black;
+    width: 50%;
+}
+
+.register-box .right-components{
+    background-color: darkgoldenrod;
+    width: 50%;
+}
+
+.register-box input[type="submit"]{
+    width: 50%;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #ffffff;
+    color: DodgerBlue;
+    font-size: 18px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    left: 50%;
+}
+
+.register-box input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+    transition: 0.09s ease-in-out;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #dce0e3;
+    opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
+  }
+
+.input-error{
     color: #ff0000;
 }
 
