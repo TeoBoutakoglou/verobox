@@ -102,19 +102,19 @@
 
                 <div class="input-box">
                   <input type="text" id="username" name="registerUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required">
-                  <span class="input-error">* <?php echo $usernameErr;?></span>
+                  <span class="required-fields">* <?php echo $usernameErr;?></span>
                 </div>
 
                 <div class="input-box">
                   <input type="password" id="password" name="registerPassword" placeholder="Enter your password"  required="password is required">
-                  <span class="input-error">* <?php echo $passwordErr;?></span>
+                  <span class="required-fields">* <?php echo $passwordErr;?></span>
                 </div>
           </div>
 
           <div class="right-components">
                 <div class="input-box">
                   <input type="text" id="email" name="registerEmail" placeholder="Enter your email" value= "<?php echo $givenEmail?>"  required="email is required">
-                  <span class="input-error">* <?php echo $emailErr;?></span>
+                  <span class="required-fields">* <?php echo $emailErr;?></span>
                 </div>
 
                 <div class="input-box">
@@ -133,7 +133,7 @@
           <input type="submit" value="Register">
 		</form>
 
-		<span class="input-error">* field is Required</span><br>
+		<span class="required-fields required-fields-label">* Field is required</span><br>
 		<a href='./login.php'>Έχεις ήδη λογαριασμό?</a>
 	</div>
   </body>

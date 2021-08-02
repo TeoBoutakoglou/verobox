@@ -59,18 +59,24 @@ body{
     font-size: 16px;
 }
 
-.register-box .left-components{
-    background-color: black;
-    width: 50%;
+.register-box .left-components{ /*TODO: position the div (espesially the right-components) with position absolute because the element after is to far below*/
+    width: 40%;
+    position: relative;
+    left: 4%;
+    margin-top: 20px;
+    padding-right: 45px;
+    border-right: 5px solid white;
 }
 
-.register-box .right-components{
-    background-color: darkgoldenrod;
-    width: 50%;
+.register-box .right-components{ /*TODO: position the div (espesially this one) with position absolute because the element after is to far below*/
+    width: 40%;
+    position: relative;
+    left: 55%;
+    top: -281px;
 }
 
 .register-box input[type="submit"]{
-    width: 50%;
+    width: 40%;
     border: none;
     outline: none;
     height: 40px;
@@ -80,7 +86,8 @@ body{
     border-radius: 20px;
     margin-bottom: 15px;
     position: relative;
-    left: 50%;
+    left: 57%;
+    top: -220px;
 }
 
 .register-box input[type="submit"]:hover{
@@ -101,6 +108,10 @@ body{
     font-weight: bold;
     line-height: 10px;
     color: #eeeeee;
+    position: relative;
+    top: -270px;
+    left: 30px;
+    
 }
 
 .register-box a:hover{
@@ -108,7 +119,17 @@ body{
     transition: 0.08s ease-in-out;
 }
 
-.input-error{
-    color: #ff0000;
+.required-fields{
+    color: #c43636;
+    position: absolute;
+    font-size: 25px;
+}
+
+.required-fields-label{
+    font-weight: bold;
+    font-size: 15px;
+    position: relative;
+    top: -275px;
+    left: 30px;
 }
 
