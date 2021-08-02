@@ -20,7 +20,6 @@ body{
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
-    display: inline-block;
     padding: 70px 30px;
     border-radius: 25px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -46,7 +45,7 @@ body{
 
 .register-box .input-box{
     border-bottom: 1px solid white;
-    margin: 40px;
+    margin-bottom: 40px;
     padding-bottom: 8px;
 }
 
@@ -95,6 +94,19 @@ body{
     color: #dce0e3;
     opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
   }
+
+.register-box a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 10px;
+    color: #eeeeee;
+}
+
+.register-box a:hover{
+    color: #f2bf05;
+    transition: 0.08s ease-in-out;
+}
 
 .input-error{
     color: #ff0000;
