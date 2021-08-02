@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>Register - Verobox</title>
-    <link rel="stylesheet" href="styles/register/css/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/register/css/style.css">
   </head>
 
   <?php
-    include_once './etc/functions.php';
+    include_once './etc/php/functions.php';
 
     $givenFirstName = $givenLastName = $givenUsername = $givenPassword = $givenEmail = $givenDayOfBirth = $givenMonthOfBirth = $givenYearOfBirth = $givenGender = null;
     $usernameErr = $passwordErr = $emailErr = '';
@@ -70,7 +70,7 @@
 
       //redirect to login page after registration
       session_start();
-      $_SESSION['successfulRegistrationMessage'] = $givenUsername . ' your account was successfully created, please login to start';
+      set_toast_message('successfulRegistrationMessage', $givenUsername . ', your account was successfully created, please login to start');
       redirect_to('login.php');
     }
   

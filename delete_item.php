@@ -1,12 +1,11 @@
 <?php
-    include_once './etc/functions.php';
+    include_once './etc/php/functions.php';
     
     session_start();
     
     if(!isset($_GET['path']))
     {
-        
-        $_SESSION['deleteItemStatusMessage'] = "First select an item for delete.";
+        set_toast_message('deleteItemStatusMessage', "First select an item for delete.");
     }
     else
     {
@@ -17,9 +16,9 @@
         $deleteFromDBOK = delete_item_from_db($path);
 
         if($deleteFromFilesystemOK && $deleteFromDBOK)
-            $_SESSION['deleteItemStatusMessage'] = basename($path) . " has been deleted";
+            set_toast_message('deleteItemStatusMessage', basename($path) . " has been deleted");
         else
-            $_SESSION['deleteItemStatusMessage'] = "Error: cannot delete. Maybe " . basename($path) . " does not existed";
+            set_toast_message('deleteItemStatusMessage', "Error: cannot delete. Maybe " . basename($path) . " does not existed");
     }
 
     //Return to home.php

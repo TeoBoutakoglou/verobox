@@ -1,11 +1,11 @@
 <?php
-    include_once './etc/functions.php';
+    include_once './etc/php/functions.php';
 
     session_start();
 
     if(!isset($_GET['path']))
     {
-        $_SESSION['downloadItemStatusMessage'] = "First select an item.";
+        set_toast_message('downloadItemStatusMessage', "First select an item.");
     }
     else
     {

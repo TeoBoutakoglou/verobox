@@ -1,3 +1,177 @@
-.error{
-    color: #ff0000;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #e1e5e8;
+    background-size: cover;
+    background-position: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
+}
+
+.login-box{
+    width: 442px;
+    height: 390px;
+    background: DodgerBlue;
+    color: #ffffff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 25px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    left: calc(50% - 50px);
+}
+
+.welcome-message{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 29px;
+    font-weight: bold;
+    user-select: none;
+}
+
+.fa{
+    padding-left: 3px;
+}
+
+.input-box{
+    border-bottom: 1px solid white;
+    margin-bottom: 40px;
+    padding-bottom: 8px;
+}
+
+.login-box input[type="text"], input[type="password"]{
+    width: 85%;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.login-box input[type="submit"]{
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #ffffff;
+    color: DodgerBlue;
+    font-size: 18px;
+    border-radius: 20px;
+    margin-bottom: 15px;
+}
+
+.login-box input[type="submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+    transition: 0.09s ease-in-out;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #dce0e3;
+    opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
+  }
+
+.login-box a{
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 10px;
+    color: #eeeeee;
+}
+
+.login-box a:hover{
+    color: #f2bf05;
+    transition: 0.08s ease-in-out;
+}
+
+.input-error{
+    position: absolute;
+    width: 346px;
+    padding: 0;
+    bottom: 0;
+    left: 47px;
+    background: #ff4747;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 25px 25px 0px 0px;
+    user-select: none;
+}
+
+.toast{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background: #a5c8b2;
+    padding: 15px 40px;
+    border-left: 5px solid #3b5d42;
+    opacity: 0;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.toast-message{
+    font-size: 18px;
+    font-weight: bold;
+    color: #3b5d42;
+    margin: 0 20px;
+    user-select: none;
+}
+
+.toast.alert{
+    opacity: 1;
+}
+
+.toast.show{
+    animation: show_slide 0.7s ease forwards;
+}
+
+@keyframes show_slide{
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(5px);
+    }
+}
+
+.toast.hide{
+    animation: hide_slide 0.7s ease forwards;
+}
+
+@keyframes hide_slide{
+    0%{
+        transform: translateX(5px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(100%);
+    }
 }
