@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="input-box">
-                <i class="fa fa-calendar"></i>
+                  <i class="fa fa-calendar"></i>
                   <input type="text" id="day" name="dayOfBirth" placeholder="Day" value= "<?php echo $givenDayOfBirth?>">
                   <input type="text" id="month" name="monthOfBirth" placeholder="Month" value= "<?php echo $givenMonthOfBirth?>">
                   <input type="text" id="year" name="yearOfBirth" placeholder="Year" value= "<?php echo $givenYearOfBirth?>">

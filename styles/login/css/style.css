@@ -1,12 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
 
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 body{
     margin: 0;
     padding: 0;
     background: #e1e5e8;
     background-size: cover;
     background-position: center;
-    font-family: 'Source Sans Pro', sans-serif;
     overflow: hidden;
 }
 
@@ -71,6 +74,7 @@ body{
     background: #ffffff;
     color: DodgerBlue;
     font-size: 18px;
+    font-weight: bold;
     border-radius: 20px;
     margin-bottom: 15px;
 }
@@ -84,8 +88,10 @@ body{
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #dce0e3;
+    font-weight: bold;
+    font-size: 17px;
     opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
-  }
+}
 
 .login-box a{
     text-decoration: none;
