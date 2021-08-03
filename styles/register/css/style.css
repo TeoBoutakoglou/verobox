@@ -151,3 +151,64 @@ body{
     left: 30px;
 }
 
+.register-error-toast{
+    position: absolute;
+    top: 15px;
+    right: 0;
+    background: #f8d7da;
+    padding: 15px 40px;
+    border-left: 5px solid #822a46;
+    opacity: 0;
+    border-radius: 2px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.register-error-toast-message{
+    font-size: 18px;
+    font-weight: bold;
+    color: #822a46;
+    margin: 0 20px;
+    user-select: none;
+}
+
+.register-error-toast.alert{
+    opacity: 1;
+}
+
+.register-error-toast.show{
+    animation: show_slide 0.7s ease forwards;
+}
+
+@keyframes show_slide{
+    0%{
+        transform: translateX(100%);
+    }
+    40%{
+        transform: translateX(-10%);
+    }
+    80%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(5px);
+    }
+}
+
+.register-error-toast.hide{
+    animation: hide_slide 0.7s ease forwards;
+}
+
+@keyframes hide_slide{
+    0%{
+        transform: translateX(5px);
+    }
+    40%{
+        transform: translateX(0%);
+    }
+    80%{
+        transform: translateX(-10%);
+    }
+    100%{
+        transform: translateX(100%);
+    }
+}

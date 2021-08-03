@@ -51,6 +51,8 @@
     {
       //username is null at the first load of the page and create an error, by doing this php doesn't pop up the error
     }
+
+	//Validation username, password, email check
     else if (user_exists($givenUsername))
     {
       $usernameErr = 'User ' . $givenUsername . ' already exists';
@@ -80,8 +82,12 @@
   </head>
 
 
-  <body>
+  <body id="body">
 
+  	<div class="register-error-toast hide" id="registerErrorToastId">
+        <span class="register-error-toast-message"><?php echo $usernameErr; echo $passwordErr; echo $emailErr;?></span> 
+    </div>
+	
 	<div class="register-box">
 		
 		<img src=".\styles\register\images\register-user-avatar-icon.png" class="register-avatar">
@@ -105,13 +111,13 @@
                 <div class="input-box">
                   <i class="fa fa-user"></i>
                   <input type="text" id="username" name="registerUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required">
-                  <span class="required-fields">* <?php echo $usernameErr;?></span>
+                  <span class="required-fields">*</span>
                 </div>
 
                 <div class="input-box">
                   <i class="fa fa-key"></i>
                   <input type="password" id="password" name="registerPassword" placeholder="Enter your password"  required="password is required">
-                  <span class="required-fields">* <?php echo $passwordErr;?></span>
+                  <span class="required-fields">*</span>
                 </div>
           </div>
 
@@ -119,7 +125,7 @@
                 <div class="input-box">
                   <i class="fa fa-envelope"></i>
                   <input type="text" id="email" name="registerEmail" placeholder="Enter your email" value= "<?php echo $givenEmail?>"  required="email is required">
-                  <span class="required-fields">* <?php echo $emailErr;?></span>
+                  <span class="required-fields">*</span>
                 </div>
 
                 <div class="input-box">
@@ -140,5 +146,10 @@
 		<span class="required-fields required-fields-label">* Field is required</span>
 		<a href='./login.php'>Έχεις ήδη λογαριασμό?</a>
 	</div>
+
+    <!--JAVASCRIPT-->
+    <script>
+      document.getElementById("body").onload = function() {register_error_toast("registerErrorToastId")};
+    </script>
   </body>
 </html>

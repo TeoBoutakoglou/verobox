@@ -17,8 +17,8 @@
 ?>
 
   <!--Get successful logout and registration message in a toast-->
-  <div class="toast hide" id="toastId">
-    <span class="toast-message"><?php echo get_toast_message('successfulLogoutMessage'); echo get_toast_message('successfulRegistrationMessage');?></span> 
+  <div class="login-toast hide" id="loginToastId">
+    <span class="login-toast-message"><?php echo get_toast_message('successfulLogoutMessage'); echo get_toast_message('successfulRegistrationMessage');?></span> 
   </div>
   
   
@@ -105,7 +105,7 @@
 
     <!--JAVASCRIPT-->
     <script>
-      document.getElementById("body").onload = function() {toast("toastId")};
+      document.getElementById("body").onload = function() {login_toast("loginToastId")};
     </script>
 
   </body>
