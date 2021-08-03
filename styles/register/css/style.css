@@ -60,9 +60,10 @@ body{
     background: transparent;
     color: #ffffff;
     font-size: 16px;
+    font-weight: bold;
 }
 
-.register-box .left-components{ /*TODO: position the div (espesially the right-components) with position absolute because the element after is to far below*/
+.register-box .left-components{ 
     width: 40%;
     position: relative;
     left: 4%;
@@ -71,7 +72,7 @@ body{
     border-right: 5px solid white;
 }
 
-.register-box .right-components{ /*TODO: position the div (espesially this one) with position absolute because the element after is to far below*/
+.register-box .right-components{ 
     width: 40%;
     position: absolute;
     right: 40px;
@@ -137,7 +138,7 @@ body{
 }
 
 .required-fields{
-    color: #c43636;
+    color: #be4b49;
     position: absolute;
     font-size: 25px;
 }
