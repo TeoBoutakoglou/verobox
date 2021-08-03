@@ -75,6 +75,10 @@ body{
     top: 147px;
 }
 
+.fa{
+    padding-left: 3px;
+}
+
 .register-box input[type="submit"]{
     width: 40%;
     border: none;
@@ -99,7 +103,16 @@ body{
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #dce0e3;
     opacity: 0.9; /* fixed opacity because Firefox has another default opacity */
-  }
+}
+
+.register-box input[name="dayOfBirth"], .register-box input[name="monthOfBirth"], .register-box input[name="yearOfBirth"]{
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    width: 45px;
+    text-align: center;
+}
 
 .register-box a{
     text-decoration: none;
@@ -108,9 +121,8 @@ body{
     line-height: 10px;
     color: #eeeeee;
     position: relative;
-    bottom: 50px;
-    left: 30px;
-    
+    bottom: 35px;
+    left: -79px;
 }
 
 .register-box a:hover{
@@ -128,7 +140,7 @@ body{
     font-weight: bold;
     font-size: 15px;
     position: relative;
-    bottom: 50px;
+    bottom: 65px;
     left: 30px;
 }
 

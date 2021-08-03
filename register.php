@@ -72,7 +72,7 @@
 <html>
   <head>
   	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/register/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./etc/js/functions.js"></script>
@@ -93,19 +93,23 @@
 
           <div class="left-components">
                 <div class="input-box">
-                  <input type="text" id="firstName" name="registerFirstName" placeholder="Enter your first name" value= "<?php echo $givenFirstName?>" autofocus>
+                    <i class="fa fa-id-card"></i>
+                    <input type="text" id="firstName" name="registerFirstName" placeholder="Enter your first name" value= "<?php echo $givenFirstName?>" autofocus>
                 </div>
 
                 <div class="input-box">
-                  <input type="text" id="lastName" name="registerLastName" placeholder="Enter your last name" value= "<?php echo $givenLastName?>">
+                    <i class="fa fa-id-card"></i>
+                    <input type="text" id="lastName" name="registerLastName" placeholder="Enter your last name" value= "<?php echo $givenLastName?>">
                 </div>
 
                 <div class="input-box">
+                  <i class="fa fa-user"></i>
                   <input type="text" id="username" name="registerUsername" placeholder="Enter your username" value= "<?php echo $givenUsername?>" required="username is required">
                   <span class="required-fields">* <?php echo $usernameErr;?></span>
                 </div>
 
                 <div class="input-box">
+                  <i class="fa fa-key"></i>
                   <input type="password" id="password" name="registerPassword" placeholder="Enter your password"  required="password is required">
                   <span class="required-fields">* <?php echo $passwordErr;?></span>
                 </div>
@@ -113,27 +117,27 @@
 
           <div class="right-components">
                 <div class="input-box">
+                  <i class="fa fa-envelope"></i>
                   <input type="text" id="email" name="registerEmail" placeholder="Enter your email" value= "<?php echo $givenEmail?>"  required="email is required">
                   <span class="required-fields">* <?php echo $emailErr;?></span>
                 </div>
 
                 <div class="input-box">
+                <i class="fa fa-calendar"></i>
                   <input type="text" id="day" name="dayOfBirth" placeholder="Day" value= "<?php echo $givenDayOfBirth?>">
                   <input type="text" id="month" name="monthOfBirth" placeholder="Month" value= "<?php echo $givenMonthOfBirth?>">
                   <input type="text" id="year" name="yearOfBirth" placeholder="Year" value= "<?php echo $givenYearOfBirth?>">
                 </div>
-
-                
                   <input type="radio" id="maleGender" name="gender" value="Male" <?php if ($givenGender == 'Male') { echo 'checked'; } ?>>
-                  <label for="maleGender">Male</label>
+                  <i class="fa fa-male"></i>
                   <input type="radio" id="femaleGender" name="gender" value="Female" <?php if ($givenGender == 'Female') { echo 'checked'; } ?>>
-                  <label for="femaleGender">Female</label>
+                  <i class="fa fa-female"></i>
           </div>
 			    
           <input type="submit" value="Register">
 		</form>
 
-		<span class="required-fields required-fields-label">* Field is required</span><br>
+		<span class="required-fields required-fields-label">* Field is required</span>
 		<a href='./login.php'>Έχεις ήδη λογαριασμό?</a>
 	</div>
   </body>
