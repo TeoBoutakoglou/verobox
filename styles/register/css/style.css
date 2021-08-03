@@ -70,9 +70,9 @@ body{
 
 .register-box .right-components{ /*TODO: position the div (espesially this one) with position absolute because the element after is to far below*/
     width: 40%;
-    position: relative;
-    left: 55%;
-    top: -281px;
+    position: absolute;
+    right: 40px;
+    top: 147px;
 }
 
 .register-box input[type="submit"]{
@@ -87,7 +87,6 @@ body{
     margin-bottom: 15px;
     position: relative;
     left: 57%;
-    top: -220px;
 }
 
 .register-box input[type="submit"]:hover{
@@ -109,7 +108,7 @@ body{
     line-height: 10px;
     color: #eeeeee;
     position: relative;
-    top: -270px;
+    bottom: 50px;
     left: 30px;
     
 }
@@ -129,7 +128,7 @@ body{
     font-weight: bold;
     font-size: 15px;
     position: relative;
-    top: -275px;
+    bottom: 50px;
     left: 30px;
 }
 
