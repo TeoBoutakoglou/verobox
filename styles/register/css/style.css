@@ -79,9 +79,7 @@ body{
     top: 147px;
 }
 
-.fa{
-    padding-left: 3px;
-}
+
 
 .register-box input[type="submit"]{
     width: 40%;
@@ -211,4 +209,17 @@ body{
     100%{
         transform: translateX(100%);
     }
+}
+
+.input-box .fa{
+    padding-left: 3px;
+}
+
+.register-error-toast .fa-times-circle{
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #822a46;
+    font-size: 20px;
 }

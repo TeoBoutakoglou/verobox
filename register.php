@@ -76,7 +76,8 @@
   	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/register/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./etc/js/functions.js"></script>
     <title>Register - Verobox</title>
   </head>
@@ -85,6 +86,7 @@
   <body id="body">
 
   	<div class="register-error-toast hide" id="registerErrorToastId">
+        <i class="fas fa-times-circle"></i>
         <span class="register-error-toast-message"><?php echo $usernameErr; echo $passwordErr; echo $emailErr;?></span> 
     </div>
 	
@@ -129,7 +131,7 @@
                 </div>
 
                 <div class="input-box">
-                  <i class="fa fa-calendar"></i>
+                  <i class="fa fa-calendar-alt"></i>
                   <input type="text" id="day" name="dayOfBirth" placeholder="Day" value= "<?php echo $givenDayOfBirth?>">
                   <input type="text" id="month" name="monthOfBirth" placeholder="Month" value= "<?php echo $givenMonthOfBirth?>">
                   <input type="text" id="year" name="yearOfBirth" placeholder="Year" value= "<?php echo $givenYearOfBirth?>">

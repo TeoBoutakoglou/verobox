@@ -18,12 +18,12 @@
 
   <!--Get successful logout and registration message in a toast-->
   <div class="login-toast hide" id="loginToastId">
+    <i class="fas fa-check-circle"></i>
     <span class="login-toast-message"><?php echo get_toast_message('successfulLogoutMessage'); echo get_toast_message('successfulRegistrationMessage');?></span> 
   </div>
   
-  
-  
-  <?php
+<?php
+  //this 2 lines needs to be after login-toast div element
   session_unset();
   session_destroy();
 
@@ -66,7 +66,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/login/css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./etc/js/functions.js"></script>
     <title>Login - Verobox</title>
   </head>
