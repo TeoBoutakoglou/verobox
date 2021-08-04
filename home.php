@@ -33,7 +33,7 @@
     echo get_toast_message("uploadedItemStatusMessage");
     echo get_toast_message("deleteItemStatusMessage");
     echo get_toast_message("downloadItemStatusMessage");
-
+    echo get_toast_message("searchItemStatusMessage");
 ?>
 
 <!DOCTYPE HTML> 
@@ -48,25 +48,37 @@
 
     <p class="tmp">Welcome, <?php echo $username?></p>
 
+    <!-- Search bar form -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <input type="text" name="itemToSearch" placeholder="Search">
+        <input type="submit" value="Search" name="submit-search">
+    </form>
+    
+    <!-- Upload form -->
     <form action="upload_item.php" method="POST" enctype="multipart/form-data">
         Select item to upload:
         <input type="file" name="itemToUpload" id="itemToUpload">
-        <input type="submit" value="Upload" name="submit">
+        <input type="submit" value="Upload" name="submit-upload">
     </form>
     <?php
-        //print all items from DB
-        echo "<br>Your items<br>";
-        $items = get_all_user_items($username); //each row of $items contains one item
-        foreach ($items as $item)
+
+        $itemToSearch = ""; //set to "" means no search (get all the values)
+        //Search or get all items from DB
+        if(isset($_POST['itemToSearch']))
         {
-            $itemName = $item['item_name'];
-            $itemPath = $item['item_path'];
-            $itemType = $item['item_type'];
-            $itemDateOfUpload = $item['date_of_upload'];
-            $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
-            $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+            if(empty($_POST['itemToSearch']))
+            {
+                set_toast_message('searchItemStatusMessage', "Type something to search");
+            }
+            else
+            {
+                $itemToSearch = $_POST['itemToSearch'];
+            }
         }
+        $items = get_user_items($username, $itemToSearch); //each row of $items contains one item  
+        //Display items
+        echo "<br>Your items<br>";
+        display_items($items);
 
         
     ?>

@@ -166,7 +166,6 @@ function get_user_id_by_username($username)
     return $userId;
 }
 
-
 function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 {
     $conn = connect_to_database();
@@ -180,27 +179,6 @@ function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 function upload_item_in_filesystem($itemTempName, $itemPath)
 {
     move_uploaded_file($itemTempName, $itemPath);
-}
-
-
-function get_all_user_items($username)
-{
-    $userId = get_user_id_by_username($username);
-    $conn = connect_to_database();
-    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
-    $result = mysqli_query($conn, $query);
-    mysqli_close($conn);
-    
-    $rows = array();
-    if (mysqli_num_rows($result) > 0)
-    {
-        
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $rows[] = $row; //$row contains the properties of an item
-        }
-    }
-    return $rows; //contains all items (array of arrays form)
 }
 
 
@@ -232,6 +210,7 @@ function delete_item_from_db($path)
     return $result;
 }
 
+
 function get_toast_message($sessionIndexName)
 {
     if(isset($_SESSION[$sessionIndexName]))
@@ -242,9 +221,46 @@ function get_toast_message($sessionIndexName)
     }
 }
 
+
 function set_toast_message($sessionIndexName, $message)
 {
     $_SESSION[$sessionIndexName] = $message;
+}
+
+
+function display_items($items)
+{
+    foreach ($items as $item)
+        {
+            $itemName = $item['item_name'];
+            $itemPath = $item['item_path'];
+            $itemType = $item['item_type'];
+            $itemDateOfUpload = $item['date_of_upload'];
+            $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
+            $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
+            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+        }
+}
+
+
+function get_user_items($username, $itemToSearch)
+{
+    $userId = get_user_id_by_username($username);
+    $conn = connect_to_database();
+    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    
+    $rows = array();
+    if (mysqli_num_rows($result) > 0)
+    {
+        
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $rows[] = $row; //$row contains the properties of an item
+        }
+    }
+    return $rows; //contains all items (array of arrays form)
 }
 
 ?>
