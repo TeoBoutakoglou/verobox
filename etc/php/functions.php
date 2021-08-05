@@ -75,7 +75,6 @@ function redirect_to($target)
     {
         echo "Cannot autoredirect Please go to <a href='" . $target . "'>$target</a>";
     }
-    
 }
 
 
@@ -111,14 +110,14 @@ function set_is_online($username, $value)
 
 function get_item_extension($item)
 {
-    return strtolower(pathinfo($item,PATHINFO_EXTENSION));
+    return strtolower(end(explode('.', $item)));
 }
 
 
 function is_allowed_item_extension($itemExtension)
 {
     $allowedExtensions = array("pdf", "doc", "log", "txt", //Files
-                               "jpg", //Images
+                               "jpg", "png", //Images
                                "mkv", "mp4" //Videos
                               );
     return in_array($itemExtension, $allowedExtensions);
@@ -134,7 +133,7 @@ function is__file($itemExtension)
 
 function is_image($itemExtension)
 {
-    $imageExtensions = array("jpg");
+    $imageExtensions = array("jpg", "png");
     return in_array($itemExtension, $imageExtensions);
 }
 
@@ -231,15 +230,15 @@ function set_toast_message($sessionIndexName, $message)
 function display_items($items)
 {
     foreach ($items as $item)
-        {
-            $itemName = $item['item_name'];
-            $itemPath = $item['item_path'];
-            $itemType = $item['item_type'];
-            $itemDateOfUpload = $item['date_of_upload'];
-            $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
-            $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
-        }
+    {
+        $itemName = $item['item_name'];
+        $itemPath = $item['item_path'];
+        $itemType = $item['item_type'];
+        $itemDateOfUpload = $item['date_of_upload'];
+        $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
+        $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
+        echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+    }
 }
 
 
@@ -261,6 +260,40 @@ function get_user_items($username, $itemToSearch)
         }
     }
     return $rows; //contains all items (array of arrays form)
+}
+
+
+//validate whether a specific checkbox from a checkbox group is checked
+function is_checked_checkbox($checkboxName,$value)
+{
+    if(!empty($_POST[$checkboxName]))
+    {
+        foreach($_POST[$checkboxName] as $checkboxValue)
+        {
+            if($checkboxValue == $value)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+function filtering_items_by_extension($items, $extension)
+{
+    $itemsAfterFiltering = array();
+
+    foreach ($items as $item)
+    {
+        $itemName = $item['item_name'];
+        $itemExtension = get_item_extension($itemName);
+        if($itemExtension == $extension)
+        {
+            $itemsAfterFiltering[] = $item;
+        }
+    }
+    return $itemsAfterFiltering;
 }
 
 ?>
