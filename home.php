@@ -28,7 +28,7 @@
             redirect_to('login.php');
         }
     }
-    
+
     //GET FLASH INFORMATION MESSAGES
     echo get_toast_message("uploadedItemStatusMessage");
     echo get_toast_message("deleteItemStatusMessage");
@@ -50,7 +50,7 @@
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="text" name="itemToSearch" placeholder="Search in Verobox">
         <input type="submit" value="Search" name="submit-search"><br>
-        Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension">Extension
+        Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
         <input type="checkbox" name="searchOptions[]" value="searchKeywords">Keywords
     </form>
     
@@ -77,11 +77,10 @@
         $items = get_user_items($username, $itemToSearch); //each row of $items contains one item 
         
         //additional search options (filtering)
-        if(is_checked_checkbox("searchOptions[]","searchExtension"))
+        if(is_checked_checkbox("searchOptions","searchExtension"))
         {
-            //TODO: make function for filtering the $items to those who has the user input within the extension of the item_name
             $extension = $_POST['itemToSearch'];
-            $items = filtering_items_by_extension($items, $extension);
+            $items = filter_items_by_extension($items, $extension);
         }
         
         //Display items

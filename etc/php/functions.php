@@ -108,9 +108,9 @@ function set_is_online($username, $value)
 }
 
 
-function get_item_extension($item)
+function get_item_extension($itemName)
 {
-    return strtolower(end(explode('.', $item)));
+    return strtolower(pathinfo($itemName,PATHINFO_EXTENSION));
 }
 
 
@@ -266,24 +266,19 @@ function get_user_items($username, $itemToSearch)
 //validate whether a specific checkbox from a checkbox group is checked
 function is_checked_checkbox($checkboxName,$value)
 {
-    if(!empty($_POST[$checkboxName]))
-    {
-        foreach($_POST[$checkboxName] as $checkboxValue)
-        {
-            if($checkboxValue == $value)
-            {
-                return true;
-            }
-        }
-    }
-    return false;
+    if(isset($_POST[$checkboxName]))
+    {  
+        if(in_array($value, $_POST[$checkboxName]))
+            return true;
+        else
+            return false;
+    } 
 }
 
 
-function filtering_items_by_extension($items, $extension)
+function filter_items_by_extension($items, $extension)
 {
     $itemsAfterFiltering = array();
-
     foreach ($items as $item)
     {
         $itemName = $item['item_name'];
