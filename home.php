@@ -48,7 +48,7 @@
 
     <!-- Search bar form -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-        <input type="text" name="itemToSearch" placeholder="Search in Verobox">
+        <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
         <input type="submit" value="Search" name="submit-search"><br>
         Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
         <input type="checkbox" name="searchOptions[]" value="searchKeywords">Keywords
@@ -65,11 +65,12 @@
         $itemToSearch = ""; //set to "" means no search (get all the values)
         
         //Search or get all items from DB
-        if(empty($_POST['itemToSearch']))
+        if(isset($_POST['submit-search']) && empty($_POST['itemToSearch']))
         {
             set_toast_message('searchItemStatusMessage', "Type something to search");
+            redirect_to("home.php");
         }
-        else
+        else if(isset($_POST['submit-search']) && !empty($_POST['itemToSearch']))
         {
             $itemToSearch = $_POST['itemToSearch'];
         }
