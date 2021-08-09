@@ -52,6 +52,7 @@
         <input type="submit" value="Search" name="submit-search"><br>
         Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
         <input type="checkbox" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
+        <input type="checkbox" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
     </form>
     
     <!-- Upload form -->
@@ -87,6 +88,11 @@
         if (is_checked_checkbox("searchOptions","searchImages"))
         {
             $items = filter_items_by_type($items, "image");
+        }
+
+        if (is_checked_checkbox("searchOptions","searchFiles"))
+        {
+            $items = filter_items_by_type($items, "file");
         }
         
         //Display items
