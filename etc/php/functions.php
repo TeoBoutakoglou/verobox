@@ -249,7 +249,7 @@ function get_user_items($username, $itemToSearch)
     $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
-    
+
     $rows = array();
     if (mysqli_num_rows($result) > 0)
     {
@@ -284,6 +284,22 @@ function filter_items_by_extension($items, $extension)
         $itemName = $item['item_name'];
         $itemExtension = get_item_extension($itemName);
         if($itemExtension == $extension)
+        {
+            $itemsAfterFiltering[] = $item;
+        }
+    }
+    return $itemsAfterFiltering;
+}
+
+
+function filter_items_by_type($items, $selectedItemType)
+{
+    $itemsAfterFiltering = array();
+    foreach ($items as $item)
+    {
+        $itemType = $item['item_type'];
+        
+        if($itemType == $selectedItemType)
         {
             $itemsAfterFiltering[] = $item;
         }

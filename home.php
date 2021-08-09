@@ -51,7 +51,7 @@
         <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
         <input type="submit" value="Search" name="submit-search"><br>
         Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
-        <input type="checkbox" name="searchOptions[]" value="searchKeywords">Keywords
+        <input type="checkbox" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
     </form>
     
     <!-- Upload form -->
@@ -82,6 +82,11 @@
         {
             $extension = $_POST['itemToSearch'];
             $items = filter_items_by_extension($items, $extension);
+        }
+
+        if (is_checked_checkbox("searchOptions","searchImages"))
+        {
+            $items = filter_items_by_type($items, "image");
         }
         
         //Display items
