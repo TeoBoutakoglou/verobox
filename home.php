@@ -85,7 +85,7 @@
         }
         
         //Display items
-        echo "<br>Your items<br>";
+        echo "<br>Your items (" .  count($items) . " results)<br>";
         display_items($items);
 
         
