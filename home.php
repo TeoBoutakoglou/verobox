@@ -51,8 +51,9 @@
         <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
         <input type="submit" value="Search" name="submit-search"><br>
         Search for: <input type="radio" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
-        <input type="radio" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
         <input type="radio" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
+        <input type="radio" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
+        <input type="radio" name="searchOptions[]" value="searchVideos" <?php if(is_checked_checkbox("searchOptions","searchVideos")){  echo "checked";  } ?>>Videos
     </form>
     
     <!-- Upload form -->
@@ -85,15 +86,21 @@
             $items = filter_items_by_extension($items, $extension);
         }
 
+        if (is_checked_checkbox("searchOptions","searchFiles"))
+        {
+            $items = filter_items_by_type($items, "file");
+        }
+
         if (is_checked_checkbox("searchOptions","searchImages"))
         {
             $items = filter_items_by_type($items, "image");
         }
 
-        if (is_checked_checkbox("searchOptions","searchFiles"))
+        if (is_checked_checkbox("searchOptions","searchVideos"))
         {
-            $items = filter_items_by_type($items, "file");
+            $items = filter_items_by_type($items, "video");
         }
+
         
         //Display items
         echo "<br>Your items (" .  count($items) . " results)<br>";
