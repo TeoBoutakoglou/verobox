@@ -50,9 +50,9 @@
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
         <input type="submit" value="Search" name="submit-search"><br>
-        Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
-        <input type="checkbox" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
-        <input type="checkbox" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
+        Search for: <input type="radio" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
+        <input type="radio" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
+        <input type="radio" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
     </form>
     
     <!-- Upload form -->
