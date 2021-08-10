@@ -28,12 +28,12 @@
             redirect_to('login.php');
         }
     }
-    
+
     //GET FLASH INFORMATION MESSAGES
     echo get_toast_message("uploadedItemStatusMessage");
     echo get_toast_message("deleteItemStatusMessage");
     echo get_toast_message("downloadItemStatusMessage");
-
+    echo get_toast_message("searchItemStatusMessage");
 ?>
 
 <!DOCTYPE HTML> 
@@ -46,27 +46,65 @@
 
     <body>
 
-    <p class="tmp">Welcome, <?php echo $username?></p>
-
+    <!-- Search bar form -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
+        <input type="submit" value="Search" name="submit-search"><br>
+        Search for: <input type="radio" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
+        <input type="radio" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
+        <input type="radio" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
+        <input type="radio" name="searchOptions[]" value="searchVideos" <?php if(is_checked_checkbox("searchOptions","searchVideos")){  echo "checked";  } ?>>Videos
+    </form>
+    
+    <!-- Upload form -->
     <form action="upload_item.php" method="POST" enctype="multipart/form-data">
         Select item to upload:
         <input type="file" name="itemToUpload" id="itemToUpload">
-        <input type="submit" value="Upload" name="submit">
+        <input type="submit" value="Upload" name="submit-upload">
     </form>
     <?php
-        //print all items from DB
-        echo "<br>Your items<br>";
-        $items = get_all_user_items($username); //each row of $items contains one item
-        foreach ($items as $item)
+
+        $itemToSearch = ""; //set to "" means no search (get all the values)
+        
+        //Search or get all items from DB
+        if(isset($_POST['submit-search']) && empty($_POST['itemToSearch']))
         {
-            $itemName = $item['item_name'];
-            $itemPath = $item['item_path'];
-            $itemType = $item['item_type'];
-            $itemDateOfUpload = $item['date_of_upload'];
-            $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
-            $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
-            echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+            set_toast_message('searchItemStatusMessage', "Type something to search");
+            redirect_to("home.php");
         }
+        else if(isset($_POST['submit-search']) && !empty($_POST['itemToSearch']))
+        {
+            $itemToSearch = $_POST['itemToSearch'];
+        }
+        
+        $items = get_user_items($username, $itemToSearch); //each row of $items contains one item 
+        
+        //additional search options (filtering)
+        if(is_checked_checkbox("searchOptions","searchExtension"))
+        {
+            $extension = $_POST['itemToSearch'];
+            $items = filter_items_by_extension($items, $extension);
+        }
+
+        if (is_checked_checkbox("searchOptions","searchFiles"))
+        {
+            $items = filter_items_by_type($items, "file");
+        }
+
+        if (is_checked_checkbox("searchOptions","searchImages"))
+        {
+            $items = filter_items_by_type($items, "image");
+        }
+
+        if (is_checked_checkbox("searchOptions","searchVideos"))
+        {
+            $items = filter_items_by_type($items, "video");
+        }
+
+        
+        //Display items
+        echo "<br>Your items (" .  count($items) . " results)<br>";
+        display_items($items);
 
         
     ?>

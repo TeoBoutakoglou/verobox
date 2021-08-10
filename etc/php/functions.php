@@ -75,7 +75,6 @@ function redirect_to($target)
     {
         echo "Cannot autoredirect Please go to <a href='" . $target . "'>$target</a>";
     }
-    
 }
 
 
@@ -109,16 +108,16 @@ function set_is_online($username, $value)
 }
 
 
-function get_item_extension($item)
+function get_item_extension($itemName)
 {
-    return strtolower(pathinfo($item,PATHINFO_EXTENSION));
+    return strtolower(pathinfo($itemName,PATHINFO_EXTENSION));
 }
 
 
 function is_allowed_item_extension($itemExtension)
 {
     $allowedExtensions = array("pdf", "doc", "log", "txt", //Files
-                               "jpg", //Images
+                               "jpg", "png", //Images
                                "mkv", "mp4" //Videos
                               );
     return in_array($itemExtension, $allowedExtensions);
@@ -134,7 +133,7 @@ function is__file($itemExtension)
 
 function is_image($itemExtension)
 {
-    $imageExtensions = array("jpg");
+    $imageExtensions = array("jpg", "png");
     return in_array($itemExtension, $imageExtensions);
 }
 
@@ -166,7 +165,6 @@ function get_user_id_by_username($username)
     return $userId;
 }
 
-
 function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 {
     $conn = connect_to_database();
@@ -180,27 +178,6 @@ function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
 function upload_item_in_filesystem($itemTempName, $itemPath)
 {
     move_uploaded_file($itemTempName, $itemPath);
-}
-
-
-function get_all_user_items($username)
-{
-    $userId = get_user_id_by_username($username);
-    $conn = connect_to_database();
-    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' .$userId;
-    $result = mysqli_query($conn, $query);
-    mysqli_close($conn);
-    
-    $rows = array();
-    if (mysqli_num_rows($result) > 0)
-    {
-        
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $rows[] = $row; //$row contains the properties of an item
-        }
-    }
-    return $rows; //contains all items (array of arrays form)
 }
 
 
@@ -232,6 +209,7 @@ function delete_item_from_db($path)
     return $result;
 }
 
+
 function get_toast_message($sessionIndexName)
 {
     if(isset($_SESSION[$sessionIndexName]))
@@ -242,9 +220,91 @@ function get_toast_message($sessionIndexName)
     }
 }
 
+
 function set_toast_message($sessionIndexName, $message)
 {
     $_SESSION[$sessionIndexName] = $message;
+}
+
+
+function display_items($items)
+{
+    foreach ($items as $item)
+    {
+        $itemName = $item['item_name'];
+        $itemPath = $item['item_path'];
+        $itemType = $item['item_type'];
+        $itemDateOfUpload = $item['date_of_upload'];
+        $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
+        $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
+        echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+    }
+}
+
+
+function get_user_items($username, $itemToSearch)
+{
+    $userId = get_user_id_by_username($username);
+    $conn = connect_to_database();
+    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+
+    $rows = array();
+    if (mysqli_num_rows($result) > 0)
+    {
+        
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $rows[] = $row; //$row contains the properties of an item
+        }
+    }
+    return $rows; //contains all items (array of arrays form)
+}
+
+
+//validate whether a specific checkbox from a checkbox group is checked
+function is_checked_checkbox($checkboxName,$value)
+{
+    if(isset($_POST[$checkboxName]))
+    {  
+        if(in_array($value, $_POST[$checkboxName]))
+            return true;
+        else
+            return false;
+    } 
+}
+
+
+function filter_items_by_extension($items, $extension)
+{
+    $itemsAfterFiltering = array();
+    foreach ($items as $item)
+    {
+        $itemName = $item['item_name'];
+        $itemExtension = get_item_extension($itemName);
+        if($itemExtension == $extension)
+        {
+            $itemsAfterFiltering[] = $item;
+        }
+    }
+    return $itemsAfterFiltering;
+}
+
+
+function filter_items_by_type($items, $selectedItemType)
+{
+    $itemsAfterFiltering = array();
+    foreach ($items as $item)
+    {
+        $itemType = $item['item_type'];
+        
+        if($itemType == $selectedItemType)
+        {
+            $itemsAfterFiltering[] = $item;
+        }
+    }
+    return $itemsAfterFiltering;
 }
 
 ?>

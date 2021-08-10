@@ -26,6 +26,10 @@ else
   {
     set_toast_message("uploadedItemStatusMessage", 'Item size must be excately 85 MB');
   }
+  else if(file_exists($itemPath))
+  {
+    set_toast_message("uploadedItemStatusMessage", "This item already exists");
+  }
 
 
   if(empty(get_toast_message('uploadedItemStatusMessage'))) //empty uploadedItemStatusMessage yet means no errors
@@ -36,6 +40,6 @@ else
     set_toast_message("uploadedItemStatusMessage", "$itemName was successfully uploaded");
   }
 }
-redirect_to("home.php"); //TODO: if i include this php script to home.php this line need to be removed
+redirect_to("home.php");
 
 ?>
