@@ -50,10 +50,10 @@
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
         <input type="submit" value="Search" name="submit-search"><br>
-        Search for: <input type="radio" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
-        <input type="radio" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
-        <input type="radio" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
-        <input type="radio" name="searchOptions[]" value="searchVideos" <?php if(is_checked_checkbox("searchOptions","searchVideos")){  echo "checked";  } ?>>Videos
+        Search for: <input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension
+        <input type="checkbox" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files
+        <input type="checkbox" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images
+        <input type="checkbox" name="searchOptions[]" value="searchVideos" <?php if(is_checked_checkbox("searchOptions","searchVideos")){  echo "checked";  } ?>>Videos
     </form>
     
     <!-- Upload form -->
@@ -65,7 +65,8 @@
     <?php
 
         $itemToSearch = ""; //set to "" means no search (get all the values)
-        
+        $items = array();
+
         //Search or get all items from DB
         if(isset($_POST['submit-search']) && empty($_POST['itemToSearch']))
         {
@@ -77,36 +78,43 @@
             $itemToSearch = $_POST['itemToSearch'];
         }
         
-        $items = get_user_items($username, $itemToSearch); //each row of $items contains one item 
+        $allUserItems = get_user_items($username, $itemToSearch); //each row of $items contains one item 
         
         //additional search options (filtering)
         if(is_checked_checkbox("searchOptions","searchExtension"))
         {
             $extension = $_POST['itemToSearch'];
-            $items = filter_items_by_extension($items, $extension);
+            $searchItemsByExtension = filter_items_by_extension($allUserItems, $extension);
+            $items = array_merge($items, $searchItemsByExtension);
         }
 
         if (is_checked_checkbox("searchOptions","searchFiles"))
         {
-            $items = filter_items_by_type($items, "file");
+            $searchItemsByType = filter_items_by_type($allUserItems, "file");
+            $items  = array_merge($items, $searchItemsByType);
         }
 
         if (is_checked_checkbox("searchOptions","searchImages"))
         {
-            $items = filter_items_by_type($items, "image");
+            $searchItemsByType = filter_items_by_type($allUserItems, "image");
+            $items  = array_merge($items, $searchItemsByType);
         }
 
         if (is_checked_checkbox("searchOptions","searchVideos"))
         {
-            $items = filter_items_by_type($items, "video");
+            $searchItemsByType = filter_items_by_type($allUserItems, "video");
+            $items  = array_merge($items, $searchItemsByType);
         }
 
         
         //Display items
+        if(!isset($_POST['submit-search']))
+        {
+            $items = $allUserItems;
+        } 
+            
         echo "<br>Your items (" .  count($items) . " results)<br>";
         display_items($items);
-
-        
     ?>
     <br>
     <a href="home.php?_task=logout">logout</a>
