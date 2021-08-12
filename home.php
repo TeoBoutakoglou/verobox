@@ -53,7 +53,9 @@
 
     <!-- MENU BAR -->
     <div class="menu-bar">
-
+        <div class="home-logo">
+            <a href="home.php">Verobox</a>
+        </div>
         <!-- SEARCH BAR -->
         <div class="search-bar">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
@@ -65,8 +67,9 @@
                 <input type="checkbox" name="searchOptions[]" value="searchVideos" <?php if(is_checked_checkbox("searchOptions","searchVideos")){  echo "checked";  } ?>>Videos
             </form>
         </div>
-        
-
+        <div class="logout">
+            <a href="home.php?_task=logout"><i class="fas fa-power-off"></i></a>
+        </div>
     </div>    
     <!-- Upload form -->
     <form action="upload_item.php" method="POST" enctype="multipart/form-data">
@@ -128,8 +131,6 @@
         echo "<br>Your items (" .  count($items) . " results)<br>";
         display_items($items);
     ?>
-    <br>
-    <a href="home.php?_task=logout">logout</a>
 
     </body>
 </html>

@@ -4,9 +4,41 @@
     position: fixed;
     top: 0;
     left: 0;
+    height: 50px;
     width: 100%;
 }
 
+.menu-bar .home-logo{
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 5.5%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-bar .home-logo a{
+    text-decoration: none;
+    font-size: 30px;
+    color: rgb(240, 240, 240);
+}
+
 .menu-bar .search-bar{
-    float: right;
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-bar .logout{
+    float: none;
+    position: absolute;
+    top: 50%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+}
+
+.menu-bar .logout .fa-power-off{
+    color: white;
+    font-size: 25px;
 }
