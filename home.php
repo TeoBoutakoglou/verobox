@@ -70,67 +70,77 @@
         <div class="logout">
             <a href="home.php?_task=logout"><i class="fas fa-power-off"></i></a>
         </div>
-    </div>    
-    <!-- Upload form -->
-    <form action="upload_item.php" method="POST" enctype="multipart/form-data">
-        Select item to upload:
-        <input type="file" name="itemToUpload" id="itemToUpload">
-        <input type="submit" value="Upload" name="submit-upload">
-    </form>
-    <?php
-
-        $itemToSearch = ""; //set to "" means no search (get all the values)
-        $items = array();
-
-        //Search or get all items from DB
-        if(isset($_POST['submit-search']) && empty($_POST['itemToSearch']))
-        {
-            set_toast_message('searchItemStatusMessage', "Type something to search");
-            redirect_to("home.php");
-        }
-        else if(isset($_POST['submit-search']) && !empty($_POST['itemToSearch']))
-        {
-            $itemToSearch = $_POST['itemToSearch'];
-        }
+    </div>  
+    
+    <!-- SIDE BAR -->
+    <div class="side-bar">
         
-        $allUserItems = get_user_items($username, $itemToSearch); //each row of $items contains one item 
-        
-        //additional search options (filtering)
-        if(isset($_POST['searchOptions']))
-        {
-            if (is_checked_checkbox("searchOptions","searchExtension"))
-            {
-                $extension = $_POST['itemToSearch'];
-                $searchItemsByExtension = filter_items_by_extension($allUserItems, $extension);
-                $items = array_merge($items, $searchItemsByExtension);
-            }
+    </div>
+    <!-- HOME CONTENT -->
+    <div class="home-content">
+        <!-- Upload form -->
+        <form action="upload_item.php" method="POST" enctype="multipart/form-data">
+            Select item to upload:
+            <input type="file" name="itemToUpload" id="itemToUpload">
+            <input type="submit" value="Upload" name="submit-upload">
+        </form>
+        <?php
 
-            if (is_checked_checkbox("searchOptions","searchFiles"))
-            {
-                $searchItemsByType = filter_items_by_type($allUserItems, "file");
-                $items  = array_merge($items, $searchItemsByType);
-            }
+            $itemToSearch = ""; //set to "" means no search (get all the values)
+            $items = array();
 
-            if (is_checked_checkbox("searchOptions","searchImages"))
+            //Search or get all items from DB
+            if(isset($_POST['submit-search']) && empty($_POST['itemToSearch']))
             {
-                $searchItemsByType = filter_items_by_type($allUserItems, "image");
-                $items  = array_merge($items, $searchItemsByType);
+                set_toast_message('searchItemStatusMessage', "Type something to search");
+                redirect_to("home.php");
             }
+            else if(isset($_POST['submit-search']) && !empty($_POST['itemToSearch']))
+            {
+                $itemToSearch = $_POST['itemToSearch'];
+            }
+            
+            $allUserItems = get_user_items($username, $itemToSearch); //each row of $items contains one item 
+            
+            //additional search options (filtering)
+            if(isset($_POST['searchOptions']))
+            {
+                if (is_checked_checkbox("searchOptions","searchExtension"))
+                {
+                    $extension = $_POST['itemToSearch'];
+                    $searchItemsByExtension = filter_items_by_extension($allUserItems, $extension);
+                    $items = array_merge($items, $searchItemsByExtension);
+                }
 
-            if (is_checked_checkbox("searchOptions","searchVideos"))
+                if (is_checked_checkbox("searchOptions","searchFiles"))
+                {
+                    $searchItemsByType = filter_items_by_type($allUserItems, "file");
+                    $items  = array_merge($items, $searchItemsByType);
+                }
+
+                if (is_checked_checkbox("searchOptions","searchImages"))
+                {
+                    $searchItemsByType = filter_items_by_type($allUserItems, "image");
+                    $items  = array_merge($items, $searchItemsByType);
+                }
+
+                if (is_checked_checkbox("searchOptions","searchVideos"))
+                {
+                    $searchItemsByType = filter_items_by_type($allUserItems, "video");
+                    $items  = array_merge($items, $searchItemsByType);
+                }
+            }        
+            else
             {
-                $searchItemsByType = filter_items_by_type($allUserItems, "video");
-                $items  = array_merge($items, $searchItemsByType);
-            }
-        }        
-        else
-        {
-            $items = $allUserItems;
-        } 
-        //Display items    
-        echo "<br>Your items (" .  count($items) . " results)<br>";
-        display_items($items);
-    ?>
+                $items = $allUserItems;
+            } 
+
+            
+            //DISPLAY ITEMS    
+            echo "<br>Your items (" .  count($items) . " results)<br>";
+            display_items($items);
+        ?>
+    </div>
 
     </body>
 </html>

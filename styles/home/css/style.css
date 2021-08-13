@@ -1,3 +1,9 @@
+body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 .menu-bar{
     overflow: hidden;
     background-color: DodgerBlue;
@@ -41,4 +47,29 @@
 .menu-bar .logout .fa-power-off{
     color: white;
     font-size: 25px;
+}
+
+.home-content{
+    outline: none;
+    border: none;
+    float: none;
+    position: fixed;
+    left: 11%;
+    width: 89%;
+    top: 50px;
+    height: 94.3%;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.side-bar{
+    outline: none;
+    border: none;
+    float: none;
+    position: fixed;
+    left: 0%;
+    width: 11%;
+    top: 50px;
+    height: 94.3%;
+    background-color: black;
 }
