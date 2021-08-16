@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+
+*{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -49,27 +55,27 @@ body{
     font-size: 25px;
 }
 
-.home-content{
-    outline: none;
-    border: none;
-    float: none;
-    position: fixed;
-    left: 11%;
-    width: 89%;
-    top: 50px;
-    height: 94.3%;
-    background-color: #fff;
-    overflow-y: auto;
-}
-
 .side-bar{
     outline: none;
     border: none;
     float: none;
     position: fixed;
     left: 0%;
-    width: 11%;
+    width: 14%;
     top: 50px;
     height: 94.3%;
     background-color: black;
+}
+
+.home-content{
+    outline: none;
+    border: none;
+    float: none;
+    position: fixed;
+    left: 14%;
+    width: 86%;
+    top: 50px;
+    height: 94.3%;
+    background-color: #fff;
+    overflow-y: auto;
 }
