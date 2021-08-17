@@ -59,7 +59,7 @@
         <!-- SEARCH BAR -->
         <div class="search-bar">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <div class="search_dropdown">
+                <div class="search_options_dropdown">
                     <div class="selected_search_options">Search options</div>
                     <ul>
                         <li><input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension</li>
@@ -69,8 +69,8 @@
                     </ul>
                 </div>
                 <div class="search_field">
-                    <input type="text" name="itemToSearch" placeholder="Search in Verobox" value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
-                    <input type="submit" value="Search" name="submit-search">
+                    <input type="text" name="itemToSearch" placeholder="Search in Verobox ..." value= "<?php if(!empty($_POST['itemToSearch']))echo $_POST['itemToSearch']?>">
+                    <button type="submit"name="submit-search"><i class="fas fa-search"></i></button>
                 </div>
             </form>
         </div>

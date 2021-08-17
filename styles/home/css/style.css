@@ -31,6 +31,7 @@ body{
 .menu-bar .home-logo a{
     text-decoration: none;
     font-size: 30px;
+    font-weight: bold;
     color: rgb(240, 240, 240);
 }
 
@@ -40,6 +41,117 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.menu-bar .search-bar form{
+    width: 500px;
+    background-color: #ffffff;
+    height: 39px;
+    border-radius: 5px;
+    display: flex;
+    box-shadow: 0 8px 6px -10px #b3c6ff;
+}
+
+.menu-bar .search-bar form .search_options_dropdown{
+    width: 150px;
+    height: 37px;
+    margin-top: 1px;
+    color: #9fa3b1;
+    position: relative;
+    cursor: pointer;
+}
+
+.menu-bar .search-bar form .search_options_dropdown:before{
+    content: "";
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    border: 6px solid;
+    border-color: Dodgerblue transparent transparent transparent;
+}
+
+.menu-bar .search-bar form .selected_search_options{
+    text-transform: uppercase;
+    padding: 10px 10px;
+    font-size: 13px;
+    user-select: none;
+}
+
+.menu-bar .search-bar form .search_options_dropdown ul{
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 38px;
+    background-color: #ffffff;
+    width: 130px;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 8px 8px 6px -10px #b3c6ff;
+    list-style: none;
+    cursor: default;
+    z-index: top;
+    display: none;
+}
+
+.menu-bar .search-bar form .search_options_dropdown ul .show-list{
+    display: block;
+}
+
+.menu-bar .search-bar form .search_options_dropdown ul li{
+    padding-bottom: 10px;
+}
+
+.menu-bar .search-bar form .search_options_dropdown ul li:last-child{
+    padding-bottom: 0;
+}
+
+.menu-bar .search-bar form .search_options_dropdown ul li:hover{
+    color: #6f768d;
+}
+
+.menu-bar .search-bar form .search_field{
+    width: 350px;
+    height: 37px;
+    position: relative;
+}
+
+.menu-bar .search-bar form .search_field input[type="text"]{
+    border: none;
+    outline: none;
+    width: 260px;
+    height: 75%;
+    margin: 4px;
+    border: none;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #6f768d;
+    border-left: 2px solid #dde2f1;
+}
+
+.menu-bar .search-bar form .search_field input[type="text"]::placeholder{
+    color: #9fa3b1;
+}
+
+.menu-bar .search-bar form .search_field button[type="submit"]{
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 60px;
+    height: 39px;
+    right: 0;
+    border-radius: 0 5px 5px 0;
+    font-size: 15px;
+    text-align: center;
+    background-color: transparent;
+    color: Dodgerblue;
+    cursor: pointer;
+}
+
+.menu-bar .search-bar form .search_field button[type="submit"]:hover{
+    background-color: #f2f6ff;
 }
 
 .menu-bar .logout{
@@ -76,6 +188,6 @@ body{
     width: 86%;
     top: 50px;
     height: 94.3%;
-    background-color: #fff;
+    background-color: #ffffff;
     overflow-y: auto;
 }
