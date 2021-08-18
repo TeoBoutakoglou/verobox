@@ -60,8 +60,8 @@
         <div class="search-bar">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <div class="search_options_dropdown">
-                    <div class="selected_search_options">Search options</div>
-                    <ul>
+                    <div class="selected_search_options" onclick='show_search_options_dropdown_list("dropdown-list")'>Search options</div>
+                    <ul class="dropdown-list">
                         <li><input type="checkbox" name="searchOptions[]" value="searchExtension" <?php if(is_checked_checkbox("searchOptions","searchExtension")){  echo "checked";  } ?>>Extension</li>
                         <li><input type="checkbox" name="searchOptions[]" value="searchFiles" <?php if(is_checked_checkbox("searchOptions","searchFiles")){  echo "checked";  } ?>>Files</li>
                         <li><input type="checkbox" name="searchOptions[]" value="searchImages" <?php if(is_checked_checkbox("searchOptions","searchImages")){  echo "checked";  } ?>>Images</li>
