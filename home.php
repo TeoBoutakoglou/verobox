@@ -51,6 +51,7 @@
 
     <body>
 
+
     <!-- MENU BAR -->
     <div class="menu-bar">
         <div class="home-logo">
@@ -79,10 +80,13 @@
         </div>
     </div>  
     
+
     <!-- SIDE BAR -->
     <div class="side-bar">
         
     </div>
+
+    
     <!-- HOME CONTENT -->
     <div class="home-content">
         <!-- Upload form -->
