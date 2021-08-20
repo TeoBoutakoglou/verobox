@@ -16,7 +16,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    height: 50px;
+    height: 250px;
     width: 100%;
     z-index: 1;
     /* border-bottom: 2px solid #9fa3b1; */
@@ -108,6 +108,40 @@ body{
 
 .menu-bar .search-bar form .search_options_dropdown .dropdown-list li:hover{
     color: #6f768d;
+}
+
+.menu-bar .search-bar form .search_options_dropdown .dropdown-list li input[type="checkbox"]{
+    position: relative;
+    width: 24px;
+    height: 10px;
+    margin-right: 10px;
+    -webkit-appearance: none;
+    background-color: #c6c6c6;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: 0.15s;
+}
+
+.menu-bar .search-bar form .search_options_dropdown .dropdown-list li input:checked[type="checkbox"]{
+    background-color: Dodgerblue;
+}
+
+.menu-bar .search-bar form .search_options_dropdown .dropdown-list li input[type="checkbox"]::before{
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    top: -2px;
+    left: 0;
+    background-color: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: 0.15s;
+}
+
+.menu-bar .search-bar form .search_options_dropdown .dropdown-list li input:checked[type="checkbox"]::before{
+    left: 12px;
 }
 
 .menu-bar .search-bar form .search_field{
