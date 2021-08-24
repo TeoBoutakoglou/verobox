@@ -83,18 +83,20 @@
 
     <!-- SIDE BAR -->
     <div class="side-bar">
-        
+        <ul>
+            <li class="list-item">
+                 <!-- Upload form -->
+                <form action="upload_item.php" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="itemToUpload" id="itemToUpload">
+                    <input type="submit" value="Upload" name="submit-upload">
+                </form>
+            </li>
+        </ul>
     </div>
 
     
     <!-- HOME CONTENT -->
     <div class="home-content">
-        <!-- Upload form -->
-        <form action="upload_item.php" method="POST" enctype="multipart/form-data">
-            Select item to upload:
-            <input type="file" name="itemToUpload" id="itemToUpload">
-            <input type="submit" value="Upload" name="submit-upload">
-        </form>
         <?php
 
             $itemToSearch = ""; //set to "" means no search (get all the values)

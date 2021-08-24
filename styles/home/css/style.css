@@ -16,7 +16,7 @@ body{
     position: fixed;
     top: 0;
     left: 0;
-    height: 250px;
+    height: 50px;
     width: 100%;
     z-index: 1;
     /* border-bottom: 2px solid #9fa3b1; */
@@ -215,8 +215,14 @@ body{
     width: 14%;
     top: 50px;
     height: 94.3%;
-    background-color: black;
+    background-color: #f8f8f8;
 }
+
+.side-bar ul .list-item{
+    list-style: none;
+}
+
+
 
 .home-content{
     outline: none;
