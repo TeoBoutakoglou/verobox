@@ -86,10 +86,42 @@
         <ul>
             <li class="list-item">
                  <!-- Upload form -->
-                <form action="upload_item.php" method="POST" enctype="multipart/form-data">
-                    <input type="file" name="itemToUpload" id="itemToUpload">
-                    <input type="submit" value="Upload" name="submit-upload">
+                <form class="upload-items-form"  action="upload_item.php" method="POST" enctype="multipart/form-data">
+                    <input class="upload-items-selector" type="file" name="itemToUpload" id="itemToUpload">
+                    <input class="upload-btn" type="submit" value="Upload" name="submit-upload">
                 </form>
+                
+                <div class="progress-bar"></div>
+                
+                <!-- <script>
+                    const uploadItemsForm = document.getElementsByClassName("upload-items-form")[0];
+                    const itemSelector = document.getElementsByClassName("upload-items-selector")[0];
+                    const progressBar = document.querySelector(".progress-bar");
+
+                    uploadItemsForm.addEventListener("submit", upload_item);
+
+                    function upload_item(e)
+                    {
+                        e.preventDefault();
+
+                        const xhr = new XMLHttpRequest();
+
+                        xhr.open("POST","./upload_item.php", true);
+                        xhr.upload.addEventListener("progress", e => {
+                            const uploadedPercent = e.lengthComputable ? (e.loaded / e.total) * 100 : 0;
+                            progressBar.style.display = "block";
+                            progressBar.style.width = uploadedPercent.toFixed(2) + "%";
+                        });
+                        xhr.setRequestHeader("Content-Type", "multipart/form-data");
+                        xhr.send(new FormData(uploadItemsForm));
+
+                        if (e.loaded === e.total)
+                        {
+                            progressBar.style.display = "none";
+                        }
+                    }
+                </script> -->
+
             </li>
         </ul>
     </div>
