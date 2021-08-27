@@ -85,43 +85,8 @@
     <div class="side-bar">
         <ul>
             <li class="list-item">
-                 <!-- Upload form -->
-                <form class="upload-items-form"  action="upload_item.php" method="POST" enctype="multipart/form-data">
-                    <input class="upload-items-selector" type="file" name="itemToUpload" id="itemToUpload">
-                    <input class="upload-btn" type="submit" value="Upload" name="submit-upload">
-                </form>
-                
-                <div class="progress-bar"></div>
-                
-                <!-- <script>
-                    const uploadItemsForm = document.getElementsByClassName("upload-items-form")[0];
-                    const itemSelector = document.getElementsByClassName("upload-items-selector")[0];
-                    const progressBar = document.querySelector(".progress-bar");
-
-                    uploadItemsForm.addEventListener("submit", upload_item);
-
-                    function upload_item(e)
-                    {
-                        e.preventDefault();
-
-                        const xhr = new XMLHttpRequest();
-
-                        xhr.open("POST","./upload_item.php", true);
-                        xhr.upload.addEventListener("progress", e => {
-                            const uploadedPercent = e.lengthComputable ? (e.loaded / e.total) * 100 : 0;
-                            progressBar.style.display = "block";
-                            progressBar.style.width = uploadedPercent.toFixed(2) + "%";
-                        });
-                        xhr.setRequestHeader("Content-Type", "multipart/form-data");
-                        xhr.send(new FormData(uploadItemsForm));
-
-                        if (e.loaded === e.total)
-                        {
-                            progressBar.style.display = "none";
-                        }
-                    }
-                </script> -->
-
+                <!--Upload Button-->
+                <button class="open-upload-box-btn"><i class="fas fa-plus"></i> NEW</button>
             </li>
         </ul>
     </div>
@@ -185,6 +150,41 @@
             echo "Your items (" .  count($items) . " results)<br>";
             display_items($items);
         ?>
+
+        <!--UPLOAD FORM-->
+        <div class="upload-box">
+            <header> Upload Files To Verobox</header>
+            <form action="#">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p>Browse File to Upload</p>
+            </form>
+            <section class="progress-area">
+                <li class="row">
+                    <i class="fas fa-file-alt"></i>
+                    <div class="content">
+                        <div class="details">
+                            <span class="name">image_01.png | Uploading...</span>
+                            <span class="percent">23%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                    </div>
+                </li>
+            </section>
+            <section class="uploaded-area">
+                <li class="row">
+                    <div class="content">
+                        <i class="fas fa-file-alt"></i>
+                        <div class="details">
+                            <span class="name">image_01.png | Uploaded</span>
+                            <span class="size">70 KB</span>
+                        </div>
+                    </div>
+                    <i class="fas fa-check"></i>
+                </li>
+            </section>
+        </div>
     </div>
 
     </body>

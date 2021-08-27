@@ -224,9 +224,12 @@ body{
 
 .side-bar ul .list-item{
     list-style: none;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid #ccc;
 }
 
-.side-bar ul .list-item .upload-items-form{
+/* .side-bar ul .list-item .upload-items-form{
     display: block;
     margin-top: 5px;
     margin-bottom: 15px;
@@ -273,6 +276,26 @@ body{
     background-color: dodgerblue;
     transition: width 0.25;
     display: none;
+} */
+
+.side-bar .list-item .open-upload-box-btn{
+    margin: 10px;
+    padding: 0;
+    height: 40px;
+    width: 70px;
+    outline: none;
+    border: none;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: space-evenly;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    color: #6990f2;
+    user-select: none;
 }
 
 .home-content{
@@ -287,3 +310,125 @@ body{
     background-color: #ffffff;
     overflow-y: auto;
 }
+
+.home-content .upload-box{
+    position: absolute;
+    float: none;
+    top: 50%;
+    left: 42%;
+    transform: translate(-50%, -50%);
+    width: 430px;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: block;
+}
+
+.home-content .upload-box header{
+    color: #6990f2;
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.home-content .upload-box form{
+    height: 167px;
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 2px dashed #6990f2;
+}
+
+.home-content .upload-box form :where(i, p){
+    color: #6990f2;
+}
+
+.home-content .upload-box form i{
+    font-size: 50px;
+}
+
+.home-content .upload-box form p{
+    font-size: 17px;
+}
+
+.home-content .upload-box section .row{
+    background-color: #e9f0ff;
+    margin-top: 10px;
+    list-style: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-content .upload-box section .row i{
+    font-size: 38px;
+    color: #6990f2;
+}
+
+.home-content .upload-box section .details span{
+    font-size: 14px;
+}
+
+.home-content .upload-box .progress-area .row .content{
+    width: 100%;
+    margin-left: 15px;
+}
+
+.home-content .upload-box .progress-area .details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.home-content .upload-box .progress-area .row .content .progress-bar{
+    height: 6px;
+    width: 100%;
+    background-color: #ffffff;
+    margin-bottom: 4px;
+    border-radius: 30px;
+}
+
+.home-content .upload-box .progress-area .row .content .progress-bar .progress{
+    height: 100%;
+    width: 23%;
+    background-color: #6990f2;
+    border-radius: inherit;
+}
+
+.home-content .upload-box .uploaded-area{
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.home-content .upload-box .uploaded-area::-webkit-scrollbar{
+    width: 0px;
+}
+
+.home-content .upload-box .uploaded-area .row .content{
+    display: flex;
+    align-items: center;
+}
+
+.home-content .upload-box .uploaded-area .row .details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.home-content .upload-box .uploaded-area .row .content .details .size{
+    font-size: 12px;
+    color: #404040;
+}
+
+.home-content .upload-box .uploaded-area .row .fa-check{
+    font-size: 16px;
+}
+
