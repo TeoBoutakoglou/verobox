@@ -86,7 +86,7 @@
         <ul>
             <li class="list-item">
                 <!--Upload Button-->
-                <button class="open-upload-box-btn"><i class="fas fa-plus"></i> NEW</button>
+                <button onclick="show_upload_dialog('upload-box')" class="open-upload-box-btn"><i class="fas fa-plus"></i> NEW</button>
             </li>
         </ul>
     </div>

@@ -39,3 +39,9 @@ function show_search_options_dropdown_list(className)
     var element = document.getElementsByClassName(className)[0];
     element.classList.toggle("show-list");
 }
+
+function show_upload_dialog(className)
+{
+    var element = document.getElementsByClassName(className)[0];
+    element.style.display = "block";
+}
