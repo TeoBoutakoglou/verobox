@@ -153,37 +153,14 @@
 
         <!--UPLOAD FORM-->
         <div class="upload-box">
-            <header> Upload Files To Verobox</header>
+            <header> Upload To Verobox</header>
             <form action="#">
+                <input type="file" name="itemToUpload" class="upload-item-selector" hidden>
                 <i class="fas fa-cloud-upload-alt"></i>
-                <p>Browse File to Upload</p>
+                <p>Browse Items to Upload</p>
             </form>
-            <section class="progress-area">
-                <li class="row">
-                    <i class="fas fa-file-alt"></i>
-                    <div class="content">
-                        <div class="details">
-                            <span class="name">image_01.png | Uploading...</span>
-                            <span class="percent">23%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
-                        </div>
-                    </div>
-                </li>
-            </section>
-            <section class="uploaded-area">
-                <li class="row">
-                    <div class="content">
-                        <i class="fas fa-file-alt"></i>
-                        <div class="details">
-                            <span class="name">image_01.png | Uploaded</span>
-                            <span class="size">70 KB</span>
-                        </div>
-                    </div>
-                    <i class="fas fa-check"></i>
-                </li>
-            </section>
+            <section class="progress-area"></section>
+            <section class="uploaded-area"></section>
         </div>
     </div>
 
