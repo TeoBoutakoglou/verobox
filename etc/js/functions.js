@@ -40,6 +40,50 @@ function show_search_options_dropdown_list(className)
     element.classList.toggle("show-list");
 }
 
+function get_item_extension(itemName)
+{
+    return  itemName.split('.').pop();
+}
+
+function is_allowed_item_extension($itemExtension)
+{
+    const allowedExtensions = ["pdf", "doc", "log", "txt", "iso", //Files
+                               "jpg", "png", //Images
+                               "mkv", "mp4" //Videos
+                            ];
+    return allowedExtensions.includes($itemExtension);
+}
+
+function is_file(itemExtension)
+{
+    fileExtensions = ["pdf", "doc", "log", "txt", "iso"];
+    return fileExtensions.includes(itemExtension);
+}
+
+function is_image(itemExtension)
+{
+    imageExtensions = ["jpg", "png"];
+    return imageExtensions.includes(itemExtension);
+}
+
+function is_video(itemExtension)
+{
+    videoExtensions = ["mkv", "mp4"];
+    return videoExtensions.includes(itemExtension);
+}
+
+function get_item_type(itemExtension)
+{
+    if (is_file(itemExtension)) return 'file';
+    else if (is_image (itemExtension)) return 'image';
+    else if (is_video(itemExtension)) return 'video';
+}
+
+function max_item_size_allowed()
+{
+    return 104857600; //bytes (exaclty 100MB)
+}
+
 function show_upload_dialog(className)
 {
     var element = document.getElementsByClassName(className)[0];
@@ -60,14 +104,21 @@ function show_upload_dialog(className)
             if(item) //if item is selected
             {
                 let itemName = item.name;
-                if(itemName.length >=30) //split the name if its bigger than 30 chars
+                itemExtension = get_item_extension(itemName);
+                if(!is_allowed_item_extension(itemExtension))
                 {
-                    itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
+                    alert("You cannot upload this type of item");
                 }
-                upload_item(itemName, uploadForm, progressArea, uploadedArea);
+                else
+                {
+                    if(itemName.length >=30) //split the name if its bigger than 30 chars
+                    {
+                        itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
+                    }
+                    upload_item(itemName, uploadForm, progressArea, uploadedArea);  
+                }
             }
         }
-
     });
 }
 
