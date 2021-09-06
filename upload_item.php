@@ -18,17 +18,11 @@ else
   $userId = get_user_id_by_username($username);
   $itemPath = "./users_items/$username/$itemType/$itemName";
 
-  // if (!is_allowed_item_extension($itemExtension))
-  // {
-  //   set_toast_message("uploadedItemStatusMessage", "These types of items is prohibited to upload.");
-  // }
-  // else if($itemSize > 89128960)
-  // {
-  //   set_toast_message("uploadedItemStatusMessage", 'Item size must be excately 85 MB');
-  // }
-  // else if(file_exists($itemPath))
+  
+  // if(file_exists($itemPath))
   // {
   //   set_toast_message("uploadedItemStatusMessage", "This item already exists");
+  // }
   }
 
 

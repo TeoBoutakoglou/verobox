@@ -79,9 +79,12 @@ function get_item_type(itemExtension)
     else if (is_video(itemExtension)) return 'video';
 }
 
-function max_item_size_allowed()
+function is_allowed_item_size(itemSize)
 {
-    return 104857600; //bytes (exaclty 100MB)
+    if(itemSize <= 104857600) //in bytes (exaclty 100MB)
+        return true;
+    else 
+        return false; 
 }
 
 function show_upload_dialog(className)
@@ -103,19 +106,27 @@ function show_upload_dialog(className)
             let item = target.files[0]; //get the first item, if multiple items selected
             if(item) //if item is selected
             {
-                let itemName = item.name;
-                itemExtension = get_item_extension(itemName);
-                if(!is_allowed_item_extension(itemExtension))
+                if(!is_allowed_item_size(item.size))
                 {
-                    alert("You cannot upload this type of item");
+                    alert("Your item is to big to upload");
                 }
                 else
                 {
-                    if(itemName.length >=30) //split the name if its bigger than 30 chars
+                    let itemName = item.name;
+                    itemExtension = get_item_extension(itemName);
+                    
+                    if(!is_allowed_item_extension(itemExtension))
                     {
-                        itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
+                        alert("You cannot upload this type of item");
                     }
-                    upload_item(itemName, uploadForm, progressArea, uploadedArea);  
+                    else
+                    {
+                        if(itemName.length >=30) //split the name if its bigger than 30 chars
+                        {
+                            itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
+                        }
+                        upload_item(itemName, uploadForm, progressArea, uploadedArea);  
+                    }
                 }
             }
         }
@@ -173,7 +184,6 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
                                 </li>`;
             uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
         }
-        
     });
     let formData = new FormData(uploadForm);
     xhr.send(formData);
