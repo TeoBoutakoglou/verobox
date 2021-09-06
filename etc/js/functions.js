@@ -128,16 +128,22 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
     xhr.open("POST", "../../upload_item.php");
     xhr.upload.addEventListener("progress", ({loaded, total}) => {
         let itemPercentageLoaded = Math.floor(loaded / total * 100);
-        let itemTotal = Math.floor(total / 1000); //getting item in KB
+        let itemSizeInBytes = total; 
         let itemSize;
-        if(itemTotal < 1024)
+
+        if(itemSizeInBytes < 1024)
         {
-            itemSize = itemTotal + " KB";
+            itemSize = itemSizeInBytes + " B";
+        }
+        else if(itemSizeInBytes < Math.pow(1024, 2))
+        {
+            itemSize = itemSizeInBytes + " KB";
         }
         else
         {
-            itemSize = (loaded / (1024 * 1024)).toFixed(2) + " MB";
+            itemSize = (loaded / Math.pow(1024, 2)).toFixed(2) + " MB";
         }
+
         let progressHTML = `<li class="row">
                                 <i class="fas fa-file-alt"></i>
                                 <div class="content">
