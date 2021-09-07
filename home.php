@@ -28,12 +28,6 @@
             redirect_to('login.php');
         }
     }
-
-    //GET FLASH INFORMATION MESSAGES
-    echo get_toast_message("uploadedItemStatusMessage");
-    echo get_toast_message("deleteItemStatusMessage");
-    echo get_toast_message("downloadItemStatusMessage");
-    echo get_toast_message("searchItemStatusMessage");
 ?>
 
 <!DOCTYPE HTML> 
@@ -95,6 +89,12 @@
     <!-- HOME CONTENT -->
     <div class="home-content">
         <?php
+
+            //GET TOAST INFORMATION MESSAGES
+            echo get_toast_message("uploadedItemStatusMessage");
+            echo get_toast_message("deleteItemStatusMessage");
+            echo get_toast_message("downloadItemStatusMessage");
+            echo get_toast_message("searchItemStatusMessage");
 
             $itemToSearch = ""; //set to "" means no search (get all the values)
             $items = array();
