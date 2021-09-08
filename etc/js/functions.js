@@ -142,13 +142,13 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
         let itemSizeInBytes = total; 
         let itemSize;
 
-        if(itemSizeInBytes < 1024)
+        if(itemSizeInBytes < Math.pow(1024, 1))
         {
-            itemSize = itemSizeInBytes + " B";
+            itemSize = (itemSizeInBytes / Math.pow(1024, 0)) + " B";
         }
         else if(itemSizeInBytes < Math.pow(1024, 2))
         {
-            itemSize = itemSizeInBytes + " KB";
+            itemSize = (itemSizeInBytes / Math.pow(1024, 1)).toFixed(2) + " KB";
         }
         else
         {
