@@ -45,31 +45,31 @@ function get_item_extension(itemName)
     return  itemName.split('.').pop();
 }
 
-function is_allowed_item_extension($itemExtension)
+function is_allowed_item_extension(itemExtension)
 {
     const allowedExtensions = ["pdf", "doc", "log", "txt", "iso", //Files
                                "jpg", "png", //Images
                                "mkv", "mp4" //Videos
                             ];
-    return allowedExtensions.includes($itemExtension);
+    return allowedExtensions.includes(itemExtension.toLowerCase());
 }
 
 function is_file(itemExtension)
 {
-    fileExtensions = ["pdf", "doc", "log", "txt", "iso"];
-    return fileExtensions.includes(itemExtension);
+    const fileExtensions = ["pdf", "doc", "log", "txt", "iso"];
+    return fileExtensions.includes(itemExtension.toLowerCase());
 }
 
 function is_image(itemExtension)
 {
-    imageExtensions = ["jpg", "png"];
-    return imageExtensions.includes(itemExtension);
+    const imageExtensions = ["jpg", "png"];
+    return imageExtensions.includes(itemExtension.toLowerCase());
 }
 
 function is_video(itemExtension)
 {
-    videoExtensions = ["mkv", "mp4"];
-    return videoExtensions.includes(itemExtension);
+    const videoExtensions = ["mkv", "mp4"];
+    return videoExtensions.includes(itemExtension.toLowerCase());
 }
 
 function get_item_type(itemExtension)
