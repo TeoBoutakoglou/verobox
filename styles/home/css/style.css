@@ -249,6 +249,10 @@ body{
     user-select: none;
 }
 
+.side-bar .list-item .open-upload-box-btn:hover{
+    background-color: #f4f4f4;
+}
+
 .home-content{
     outline: none;
     border: none;
@@ -274,6 +278,20 @@ body{
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     display: none;
+}
+
+.home-content .upload-box .close-upload-box-btn{
+    position: absolute;
+    float: none;
+    top: 0%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    color: #ffffff;
+    background-color: #6990f2;
+    cursor: pointer;
 }
 
 .home-content .upload-box header{

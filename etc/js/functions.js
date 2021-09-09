@@ -87,6 +87,12 @@ function is_allowed_item_size(itemSize)
         return false; 
 }
 
+function hide_upload_dialog(className)
+{
+    var element = document.getElementsByClassName(className)[0];
+    element.style.display = "none";
+}
+
 function show_upload_dialog(className)
 {
     var element = document.getElementsByClassName(className)[0];
