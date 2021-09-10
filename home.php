@@ -80,7 +80,7 @@
         <ul>
             <li class="list-item">
                 <!--Upload Button-->
-                <button onclick="show_upload_dialog('upload-box')" class="open-upload-box-btn"><i class="fas fa-plus"></i> NEW</button>
+                <button onclick="show_upload_dialog('upload-box')" class="show-upload-box-btn"><i class="fas fa-plus"></i> NEW</button>
             </li>
         </ul>
     </div>
@@ -153,7 +153,7 @@
 
         <!--UPLOAD FORM-->
         <div class="upload-box">
-            <button class="close-upload-box-btn" onclick="hide_upload_dialog('upload-box')"><i class="fas fa-times"></i></button>
+            <button class="hide-upload-box-btn" onclick="hide_upload_dialog('upload-box')"><i class="fas fa-times"></i></button>
             <header> Upload To Verobox</header>
             <form action="#">
                 <input type="file" name="itemToUpload" class="upload-item-selector" hidden>

@@ -229,7 +229,7 @@ body{
     border-bottom: 1px solid #ccc;
 }
 
-.side-bar .list-item .open-upload-box-btn{
+.side-bar .list-item .show-upload-box-btn{
     margin: 10px;
     padding: 0;
     height: 40px;
@@ -249,7 +249,7 @@ body{
     user-select: none;
 }
 
-.side-bar .list-item .open-upload-box-btn:hover{
+.side-bar .list-item .show-upload-box-btn:hover{
     background-color: #f4f4f4;
 }
 
@@ -280,7 +280,7 @@ body{
     display: none;
 }
 
-.home-content .upload-box .close-upload-box-btn{
+.home-content .upload-box .hide-upload-box-btn{
     position: absolute;
     float: none;
     top: 0%;
@@ -292,6 +292,10 @@ body{
     color: #ffffff;
     background-color: #6990f2;
     cursor: pointer;
+}
+
+.home-content .upload-box .hide-upload-box-btn:hover{
+    background-color: #587acf;
 }
 
 .home-content .upload-box header{

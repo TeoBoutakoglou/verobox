@@ -131,7 +131,7 @@ function show_upload_dialog(className)
                         {
                             itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
                         }
-                        upload_item(itemName, uploadForm, progressArea, uploadedArea);  
+                        upload_item(itemName, uploadForm, progressArea, uploadedArea);
                     }
                 }
             }
