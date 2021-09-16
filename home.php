@@ -38,6 +38,7 @@
         <link rel="stylesheet" type="text/css" href="styles/home/css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="./etc/js/functions.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title><?php echo $username?> - Verobox</title>
         
     </head>
@@ -87,7 +88,7 @@
 
     
     <!-- HOME CONTENT -->
-    <div class="home-content">
+    <div class="home-content" id="home-page">
         <?php
 
             //GET TOAST INFORMATION MESSAGES

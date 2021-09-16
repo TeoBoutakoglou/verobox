@@ -161,7 +161,9 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
             itemSize = (loaded / Math.pow(1024, 2)).toFixed(2) + " MB";
         }
 
-        let progressHTML = `<li class="row">
+        if(loaded < total)
+        {
+            let progressHTML = `<li class="row">
                                 <i class="fas fa-file-alt"></i>
                                 <div class="content">
                                     <div class="details">
@@ -173,9 +175,9 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
                                     </div>
                                 </div>
                             </li>`;
-        progressArea.innerHTML = progressHTML;
-
-        if(loaded == total)
+            progressArea.innerHTML = progressHTML;
+        }
+        else if(loaded == total)
         {
             progressArea.innerHTML = "";
             let uploadedHTML = `<li class="row">
@@ -192,6 +194,12 @@ function upload_item(itemName, uploadForm, progressArea, uploadedArea)
         }
     });
     let formData = new FormData(uploadForm);
-    xhr.send(formData);
+    xhr.send(formData); 
 }
 
+function update_element()
+{ 
+    $( "#home-page" ).load(window.location.href + " #home-page" );
+    // window.location.reload();
+    console.log("update_element() was executed");
+}
