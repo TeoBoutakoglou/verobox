@@ -131,7 +131,7 @@ function show_upload_dialog(className)
                         {
                             itemName = itemName.substring(0, 22) + "..." + itemName.substring(itemName.length - 4);
                         }
-                        upload_item(itemName, uploadForm, progressArea, uploadedArea);
+                        upload_item(itemName, item.size, uploadForm, progressArea, uploadedArea);
                     }
                 }
             }
@@ -139,13 +139,12 @@ function show_upload_dialog(className)
     });
 }
 
-function upload_item(itemName, uploadForm, progressArea, uploadedArea)
+function upload_item(itemName, itemSizeInBytes, uploadForm, progressArea, uploadedArea)
 {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../../upload_item.php");
     xhr.upload.addEventListener("progress", ({loaded, total}) => {
         let itemPercentageLoaded = Math.floor(loaded / total * 100);
-        let itemSizeInBytes = total; 
         let itemSize;
 
         if(itemSizeInBytes < Math.pow(1024, 1))
