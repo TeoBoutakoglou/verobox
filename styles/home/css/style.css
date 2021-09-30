@@ -497,6 +497,17 @@ body{
     border-radius: 6px 6px 0 0;
 }
 
+.grid-container .grid-item .item-header .icon{
+    position: relative;
+    border: none;
+    transform: translateY(50%);
+}
+
+.grid-container .grid-item .item-header .icon .fas{
+    color: dodgerblue;
+    font-size: 80px;
+}
+
 .grid-container .grid-item .item-information{
     position: absolute;
     border: none;

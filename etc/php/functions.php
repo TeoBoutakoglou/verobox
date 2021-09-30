@@ -244,7 +244,9 @@ function display_items($items)
             $itemName = substr($itemName, 0, 30) . "..." . get_item_extension($itemName);
         }
         echo "<div class='grid-item'>
-                <div class='item-header'>ICON</div>
+                <div class='item-header'>
+                    <div class='icon'><i class='fas fa-$itemType'></i></div>
+                </div>
                 <div class='item-information'>
                     <div class='item-name'>$itemName</div>
                 </div>
