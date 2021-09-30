@@ -469,3 +469,49 @@ body{
     }
 }
 
+.grid-container{
+    display: grid;
+    grid-template-columns: 22% 22% 22% 22%;
+    justify-content: space-evenly;
+    grid-gap: 30px;
+    background-color: #ffffff;
+    padding: 19px;
+}
+
+.grid-container .grid-item{
+    position: relative;
+    background-color: rgba(200, 200, 200, 0.05);
+    border: 2px solid lightgrey;
+    text-align: center;
+    height: 220px;
+    border-radius: 7px;
+}
+
+.grid-container .grid-item .item-header{
+    position: relative;
+    border: none;
+    width: 100%;
+    height: 70%;
+    top: 0%;
+    background-color: #ffffff;
+    border-radius: 6px 6px 0 0;
+}
+
+.grid-container .grid-item .item-information{
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 30%;
+    top: 70%;
+    background-color: rgba(200, 200, 200, 0.4);
+    border-radius: 0 0 3px 3px;
+}
+
+.grid-container .grid-item .item-information .item-name{
+    position: absolute;
+    left: 0;
+    margin-left: 8px;
+    transform: translateY(100%);
+    font-size: 14px;
+    font-weight: bold;
+}

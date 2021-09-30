@@ -237,7 +237,18 @@ function display_items($items)
         $itemDateOfUpload = $item['date_of_upload'];
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
         $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
-        echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+        // echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
+        
+        if(strlen($itemName) > 35)
+        {
+            $itemName = substr($itemName, 0, 30) . "..." . get_item_extension($itemName);
+        }
+        echo "<div class='grid-item'>
+                <div class='item-header'>ICON</div>
+                <div class='item-information'>
+                    <div class='item-name'>$itemName</div>
+                </div>
+              </div>";
     }
 }
 

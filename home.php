@@ -145,12 +145,12 @@
             {
                 $items = $allUserItems;
             } 
-
-            
-            //DISPLAY ITEMS    
-            echo "Your items (" .  count($items) . " results)<br>";
-            display_items($items);
         ?>
+
+        <!-- DISPLAY ITEMS   -->
+        <div class="grid-container">
+            <?php display_items($items); ?>
+        </div>
 
         <!--UPLOAD FORM-->
         <div class="upload-box">
