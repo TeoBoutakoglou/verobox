@@ -239,9 +239,9 @@ function display_items($items)
         $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
         // echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
         
-        if(strlen($itemName) > 21)
+        if(strlen($itemName) > 17)
         {
-            $itemName = substr($itemName, 0, 21) . "..." . get_item_extension($itemName);
+            $itemName = substr($itemName, 0, 17) . "..." . get_item_extension($itemName);
         }
         echo "<div class='grid-item'>
                 <div class='item-header'>
@@ -250,6 +250,7 @@ function display_items($items)
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>$itemName</div>
+                    <div class='item-size'>327.15 MB</div>
                     <div class='download-item'>$downloadItemLink</div>
                 </div>
               </div>";
