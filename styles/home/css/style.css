@@ -526,3 +526,29 @@ body{
     font-size: 14px;
     font-weight: bold;
 }
+
+.grid-container .grid-item .item-header .delete-item{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    right: 5%;
+    top: 5%;
+}
+
+.grid-container .grid-item .item-header .delete-item a .fa-trash-alt{
+    color: #f12a46;
+    font-size: 20px;
+}
+
+.grid-container .grid-item .item-information .download-item{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    right: 10%;
+    top: 27%;
+}
+
+.grid-container .grid-item .item-information .download-item a .fa-download{
+    color: dodgerblue;
+    font-size: 20px;
+}
