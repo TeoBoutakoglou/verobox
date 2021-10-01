@@ -235,20 +235,22 @@ function display_items($items)
         $itemPath = $item['item_path'];
         $itemType = $item['item_type'];
         $itemDateOfUpload = $item['date_of_upload'];
-        $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'>Download $itemType</a>";
-        $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'>Delete $itemType</a>";
+        $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
+        $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
         // echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
         
-        if(strlen($itemName) > 35)
+        if(strlen($itemName) > 21)
         {
-            $itemName = substr($itemName, 0, 30) . "..." . get_item_extension($itemName);
+            $itemName = substr($itemName, 0, 21) . "..." . get_item_extension($itemName);
         }
         echo "<div class='grid-item'>
                 <div class='item-header'>
+                    <div class='delete-item'>$deleteItemLink</div>
                     <div class='icon'><i class='fas fa-$itemType'></i></div>
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>$itemName</div>
+                    <div class='download-item'>$downloadItemLink</div>
                 </div>
               </div>";
     }
