@@ -165,11 +165,11 @@ function get_user_id_by_username($username)
     return $userId;
 }
 
-function upload_item_in_db($userId, $itemName, $itemPath, $itemType)
+function upload_item_in_db($userId, $itemName, $itemPath, $itemSize, $itemType)
 {
     $conn = connect_to_database();
-    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_type, date_of_upload, sharable)
-              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
+    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_size, item_type, date_of_upload, sharable)
+              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemSize . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
     $result = mysqli_query($conn, $query);  
     mysqli_close($conn);
 }
@@ -233,6 +233,7 @@ function display_items($items)
     {
         $itemName = $item['item_name'];
         $itemPath = $item['item_path'];
+        $itemSize = $item['item_size'];
         $itemType = $item['item_type'];
         $itemDateOfUpload = $item['date_of_upload'];
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
@@ -250,7 +251,7 @@ function display_items($items)
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>$itemName</div>
-                    <div class='item-size'>327.15 MB</div>
+                    <div class='item-size'>$itemSize</div>
                     <div class='download-item'>$downloadItemLink</div>
                 </div>
               </div>";
@@ -262,7 +263,7 @@ function get_user_items($username, $itemToSearch)
 {
     $userId = get_user_id_by_username($username);
     $conn = connect_to_database();
-    $query = 'SELECT item_name, item_path, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
+    $query = 'SELECT item_name, item_path, item_size, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
 
@@ -322,5 +323,4 @@ function filter_items_by_type($items, $selectedItemType)
     }
     return $itemsAfterFiltering;
 }
-
 ?>
