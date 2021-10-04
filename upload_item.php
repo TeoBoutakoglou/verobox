@@ -18,7 +18,7 @@ else
   $username = $_SESSION["username"];
   $userId = get_user_id_by_username($username);
   $itemPath = "./users_items/$username/$itemType/$itemName";
-
+  $itemSize = corvert_item_size_unit($itemSize);
   // if(file_exists($itemPath))
   // {
   //   set_toast_message("uploadedItemStatusMessage", "This item already exists");

@@ -323,4 +323,15 @@ function filter_items_by_type($items, $selectedItemType)
     }
     return $itemsAfterFiltering;
 }
+
+function corvert_item_size_unit($sizeInBytes)
+{
+    $convertedSize = "-1";
+    if ($sizeInBytes < 1024) $convertedSize = strval($sizeInBytes) . " B";
+    else if ($sizeInBytes < 1048576) $convertedSize = strval(round(($sizeInBytes/1024) ,2)) . " KB";
+    else if ($sizeInBytes < 1073741824) $convertedSize = strval(round(($sizeInBytes/1048576) ,2)) . " MB";
+    else $convertedSize = strval(round(($sizeInBytes/1073741824) ,2)) . " GB";
+    return $convertedSize;
+}
+
 ?>
