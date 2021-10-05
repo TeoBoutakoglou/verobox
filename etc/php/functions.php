@@ -108,6 +108,12 @@ function set_is_online($username, $value)
 }
 
 
+function get_item_name($itemName)
+{
+    return pathinfo($itemName)['filename'];
+}
+
+
 function get_item_extension($itemName)
 {
     return strtolower(pathinfo($itemName,PATHINFO_EXTENSION));
@@ -239,7 +245,7 @@ function display_items($items)
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
         $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
         
-        if(strlen(pathinfo($itemName)['filename']) > 17)
+        if(strlen(get_item_name($itemName)) > 17)
         {
             $itemName = substr($itemName, 0, 17) . "..." . get_item_extension($itemName);
         }
