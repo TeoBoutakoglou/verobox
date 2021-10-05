@@ -528,7 +528,7 @@ body{
     font-weight: bold;
 }
 
-.grid-container .grid-item .item-information .item-size{
+.grid-container .grid-item .item-information .item-date-and-size{
     position: absolute;
     bottom: 0;
     left: 0;

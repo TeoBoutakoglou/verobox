@@ -238,9 +238,8 @@ function display_items($items)
         $itemDateOfUpload = $item['date_of_upload'];
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
         $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
-        // echo "$itemType name: $itemName, Date of upload: $itemDateOfUpload  $downloadItemLink $deleteItemLink<br>";
         
-        if(strlen($itemName) > 17)
+        if(strlen(pathinfo($itemName)['filename']) > 17)
         {
             $itemName = substr($itemName, 0, 17) . "..." . get_item_extension($itemName);
         }
@@ -251,7 +250,7 @@ function display_items($items)
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>$itemName</div>
-                    <div class='item-size'>$itemSize</div>
+                    <div class='item-date-and-size'>$itemDateOfUpload | $itemSize</div>
                     <div class='download-item'>$downloadItemLink</div>
                 </div>
               </div>";
