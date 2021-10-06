@@ -238,6 +238,7 @@ function display_items($items)
     foreach ($items as $item)
     {
         $itemName = $item['item_name'];
+        $itemNameTooltip = $itemName;
         $itemPath = $item['item_path'];
         $itemSize = $item['item_size'];
         $itemType = $item['item_type'];
@@ -255,7 +256,10 @@ function display_items($items)
                     <div class='icon'><i class='fas fa-$itemType'></i></div>
                 </div>
                 <div class='item-information'>
-                    <div class='item-name'>$itemName</div>
+                    <div class='item-name'>
+                        $itemName
+                        <span class='full-item-name-tooltip'>$itemNameTooltip</span>
+                    </div>
                     <div class='item-date-and-size'>$itemDateOfUpload | $itemSize</div>
                     <div class='download-item'>$downloadItemLink</div>
                 </div>
