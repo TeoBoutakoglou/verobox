@@ -238,7 +238,6 @@ function display_items($items)
     foreach ($items as $item)
     {
         $itemName = $item['item_name'];
-        $itemNameTooltip = $itemName;
         $itemPath = $item['item_path'];
         $itemSize = $item['item_size'];
         $itemType = $item['item_type'];
@@ -248,8 +247,13 @@ function display_items($items)
         
         if(strlen(get_item_name($itemName)) > 17)
         {
-            $itemName = substr($itemName, 0, 17) . "..." . get_item_extension($itemName);
+            $displayedItemName = substr($itemName, 0, 16) . "..." . get_item_extension($itemName);
         }
+        else
+        {
+            $displayedItemName = $itemName;
+        }
+
         echo "<div class='grid-item'>
                 <div class='item-header'>
                     <div class='delete-item'>$deleteItemLink</div>
@@ -257,9 +261,9 @@ function display_items($items)
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>
-                        $itemName";
+                        $displayedItemName";
                         if(strlen(get_item_name($itemName)) > 17)
-                            echo "<span class='full-item-name-tooltip'>$itemNameTooltip</span>";
+                            echo "<span class='full-item-name-tooltip'>$itemName</span>";
               echo "</div>
                     <div class='item-date-and-size'>$itemDateOfUpload | $itemSize</div>
                     <div class='download-item'>$downloadItemLink</div>
