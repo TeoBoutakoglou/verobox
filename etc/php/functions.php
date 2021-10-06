@@ -257,9 +257,10 @@ function display_items($items)
                 </div>
                 <div class='item-information'>
                     <div class='item-name'>
-                        $itemName
-                        <span class='full-item-name-tooltip'>$itemNameTooltip</span>
-                    </div>
+                        $itemName";
+                        if(strlen(get_item_name($itemName)) > 17)
+                            echo "<span class='full-item-name-tooltip'>$itemNameTooltip</span>";
+              echo "</div>
                     <div class='item-date-and-size'>$itemDateOfUpload | $itemSize</div>
                     <div class='download-item'>$downloadItemLink</div>
                 </div>
