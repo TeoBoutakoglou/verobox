@@ -44,7 +44,7 @@
     </head>
 
 
-    <body>
+    <body id="body">
 
 
     <!-- MENU BAR -->
@@ -89,14 +89,11 @@
     
     <!-- HOME CONTENT -->
     <div class="home-content" id="home-page">
+        
+        
+            
+
         <?php
-
-            //GET TOAST INFORMATION MESSAGES
-            echo get_toast_message("uploadedItemStatusMessage");
-            echo get_toast_message("deleteItemStatusMessage");
-            echo get_toast_message("downloadItemStatusMessage");
-            echo get_toast_message("searchItemStatusMessage");
-
             $itemToSearch = ""; //set to "" means no search (get all the values)
             $items = array();
 
@@ -151,6 +148,12 @@
         <div class="grid-container">
             <?php display_items($items); ?>
         </div>
+        
+        <!-- GET TOAST INFORMATION MESSAGES -->
+        <div class="home-information-toast hide" id="homeInfoToastId">
+            <i class="fas fa-info-circle"></i>
+            <span class="home-information-toast-message"><?php echo get_toast_message("uploadedItemStatusMessage"); echo get_toast_message("deleteItemStatusMessage"); echo get_toast_message("downloadItemStatusMessage"); echo get_toast_message("searchItemStatusMessage");?></span>
+        </div>
 
         <!--UPLOAD FORM-->
         <div class="upload-box">
@@ -165,6 +168,11 @@
             <section class="uploaded-area"></section>
         </div>
     </div>
+
+    <!--JAVASCRIPT-->
+    <script>
+        document.getElementById("body").onload = function() {home_information_toast("homeInfoToastId")};
+    </script>
 
     </body>
 </html>

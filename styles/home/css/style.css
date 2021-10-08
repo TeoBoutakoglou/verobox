@@ -407,32 +407,32 @@ body{
     font-size: 16px;
 }
 
-.home-information-toast{
+.home-content .home-information-toast{
     position: absolute;
     top: 15px;
     right: 0;
-    background: #f8d7da;
+    background: #99dcf4;
     padding: 15px 40px;
-    border-left: 5px solid #822a46;
+    border-left: 5px solid #3cb4e4;
     opacity: 0;
     border-radius: 2px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.home-information-toast-message{
+.home-content .home-information-toast .home-information-toast-message{
     font-size: 18px;
     font-weight: bold;
-    color: #822a46;
+    color: #0192cc;
     margin: 0 20px;
     user-select: none;
 }
 
-.home-information-toast.alert{
+.home-content .home-information-toast.alert{
     opacity: 1;
 }
 
-.home-information-toast.show{
-    animation: show_slide 0.7s ease forwards;
+.home-content .home-information-toast.show{
+    animation: show_slide 1s ease forwards;
 }
 
 @keyframes show_slide{
@@ -450,8 +450,8 @@ body{
     }
 }
 
-.home-information-toast.hide{
-    animation: hide_slide 0.7s ease forwards;
+.home-content .home-information-toast.hide{
+    animation: hide_slide 1s ease forwards;
 }
 
 @keyframes hide_slide{

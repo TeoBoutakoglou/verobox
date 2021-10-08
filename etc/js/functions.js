@@ -34,6 +34,24 @@ function register_error_toast(elementId)
     }
 }
 
+function home_information_toast(elementId)
+{
+    var text = document.getElementsByClassName("home-information-toast-message")[0].textContent;
+    
+    if(!(text === ""))
+    {
+        var element = document.getElementById(elementId);
+        element.classList.add("show");
+        element.classList.add("alert");
+        element.classList.remove("hide");
+        
+        setTimeout(function(){
+            element.classList.remove("show");
+            element.classList.add("hide");
+        }, 3000);
+    }
+}
+
 function show_search_options_dropdown_list(className)
 {
     var element = document.getElementsByClassName(className)[0];
