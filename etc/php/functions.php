@@ -257,7 +257,7 @@ function display_items($items)
         echo "<div class='grid-item'>
                 <div class='item-header'>
                     <div class='delete-item'>$deleteItemLink</div>";
-                    if($itemType == 'image') echo "<img src='$itemPath' style='max-width:100%;max-height:100%;'>";
+                    if($itemType == 'image') echo "<img src='$itemPath'>";
                     else echo "<div class='icon'><i class='fas fa-$itemType'></i></div>";
                     
                 echo "</div>

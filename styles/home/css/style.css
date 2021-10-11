@@ -497,6 +497,11 @@ body{
     border-radius: 6px 6px 0 0;
 }
 
+.grid-container .grid-item .item-header img{
+    max-height: 100%;
+    max-width: 100%;
+}
+
 .grid-container .grid-item .item-header .icon{
     position: relative;
     border: none;
