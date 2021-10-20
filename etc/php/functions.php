@@ -95,6 +95,7 @@ function create_new_user_in_filesystem($username)
     create_folder("file");
     create_folder("image");
     create_folder("video");
+    create_folder("trash");
 }
 
 
@@ -233,6 +234,27 @@ function set_toast_message($sessionIndexName, $message)
 }
 
 
+function get_user_items($username, $itemToSearch)
+{
+    $userId = get_user_id_by_username($username);
+    $conn = connect_to_database();
+    $query = 'SELECT item_name, item_path, item_size, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+
+    $rows = array();
+    if (mysqli_num_rows($result) > 0)
+    {
+        
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $rows[] = $row; //$row contains the properties of an item
+        }
+    }
+    return $rows; //contains all items (array of arrays form)
+}
+
+
 function display_items($items)
 {
     foreach ($items as $item)
@@ -243,7 +265,7 @@ function display_items($items)
         $itemType = $item['item_type'];
         $itemDateOfUpload = $item['date_of_upload'];
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
-        $deleteItemLink = "<a href='" . "delete_item.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
+        $deleteItemLink = "<a href='" . "move_to_trash.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
         
         if(strlen(get_item_name($itemName)) > 17)
         {
@@ -272,27 +294,6 @@ function display_items($items)
                 </div>
               </div>";
     }
-}
-
-
-function get_user_items($username, $itemToSearch)
-{
-    $userId = get_user_id_by_username($username);
-    $conn = connect_to_database();
-    $query = 'SELECT item_name, item_path, item_size, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
-    $result = mysqli_query($conn, $query);
-    mysqli_close($conn);
-
-    $rows = array();
-    if (mysqli_num_rows($result) > 0)
-    {
-        
-        while($row = mysqli_fetch_assoc($result))
-        {
-            $rows[] = $row; //$row contains the properties of an item
-        }
-    }
-    return $rows; //contains all items (array of arrays form)
 }
 
 
@@ -340,6 +341,7 @@ function filter_items_by_type($items, $selectedItemType)
     return $itemsAfterFiltering;
 }
 
+
 function corvert_item_size_unit($sizeInBytes)
 {
     $convertedSize = "-1";
@@ -348,6 +350,18 @@ function corvert_item_size_unit($sizeInBytes)
     else if ($sizeInBytes < 1073741824) $convertedSize = strval(round(($sizeInBytes/1048576) ,2)) . " MB";
     else $convertedSize = strval(round(($sizeInBytes/1073741824) ,2)) . " GB";
     return $convertedSize;
+}
+
+
+function move_to_trash($itemPath, $username)
+{
+    //TODO move the item in filesystem (in trash folder)
+    $source_path = $itemPath;// get item path from DB
+    $destination_path = "users_items/$username/trash/";
+    if (rename($source_path, $destination_path . pathinfo($source_path, PATHINFO_BASENAME))) return true;
+    else return false;
+
+    //TODO: make the changes to DB
 }
 
 ?>
