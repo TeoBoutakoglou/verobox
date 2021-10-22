@@ -382,9 +382,22 @@ function move_to_trash($itemPath, $username)
     set_item_path($itemPath, $trashItemPath);
 
     //Filesystem
-    $source_path = $itemPath;// get item path from DB
+    $source_path = $itemPath;
     $destination_path = "users_items/$username/trash/";
     if (rename($source_path, $destination_path . pathinfo($source_path, PATHINFO_BASENAME))) return true;
     else return false;
+}
+
+
+function get_item_id_from_item_path($itemPath)
+{
+    $conn = connect_to_database();
+    $query = 'SELECT id FROM items WHERE item_path = "' . $itemPath . '"';
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+    $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $item_id = $row['id'];
+
+    return $item_id;
 }
 ?>
