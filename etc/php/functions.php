@@ -175,8 +175,8 @@ function get_user_id_by_username($username)
 function upload_item_in_db($userId, $itemName, $itemPath, $itemSize, $itemType)
 {
     $conn = connect_to_database();
-    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_size, item_type, date_of_upload, sharable)
-              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemSize . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0)';
+    $query = 'INSERT INTO items (id, user_id, item_name, item_path, item_size, item_type, date_of_upload, in_trash, sharable)
+              VALUES("", ' . $userId . ', "' . $itemName . '", "' . $itemPath . '", "' . $itemSize . '", "' . $itemType . '", "' . date("Y/m/d") . '", 0, 0)';
     $result = mysqli_query($conn, $query);  
     mysqli_close($conn);
 }
@@ -238,7 +238,7 @@ function get_user_items($username, $itemToSearch)
 {
     $userId = get_user_id_by_username($username);
     $conn = connect_to_database();
-    $query = 'SELECT item_name, item_path, item_size, item_type, date_of_upload FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
+    $query = 'SELECT item_name, item_path, item_size, item_type, date_of_upload, in_trash FROM items WHERE user_id = ' . $userId . ' AND item_name LIKE ' . "'%". $itemToSearch . "%'";
     $result = mysqli_query($conn, $query);
     mysqli_close($conn);
 
@@ -264,9 +264,12 @@ function display_items($items)
         $itemSize = $item['item_size'];
         $itemType = $item['item_type'];
         $itemDateOfUpload = $item['date_of_upload'];
+        $itemInTrash = $item['in_trash'];
         $downloadItemLink = "<a href='" . "download_item.php?path=$itemPath" . "'><i class='fas fa-download'></i></a>";
         $deleteItemLink = "<a href='" . "move_to_trash.php?path=$itemPath" . "'><i class='fas fa-trash-alt'></i></a>";
         
+        if($itemInTrash) continue; //do not display (skip) items marked as "in_trash"
+
         if(strlen(get_item_name($itemName)) > 17)
         {
             $displayedItemName = substr($itemName, 0, 16) . "..." . get_item_extension($itemName);
@@ -353,15 +356,35 @@ function corvert_item_size_unit($sizeInBytes)
 }
 
 
+function set_in_trash($itemPath, $value)
+{
+    $conn = connect_to_database();
+    $query = 'UPDATE items SET in_trash = ' . $value . ' WHERE item_path = "' . $itemPath . '"';
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+}
+
+
+function set_item_path($itemPath, $value)
+{
+    $conn = connect_to_database();
+    $query = 'UPDATE items SET item_path = "' . $value . '" WHERE item_path = "' . $itemPath . '"';
+    $result = mysqli_query($conn, $query);
+    mysqli_close($conn);
+}
+
+
 function move_to_trash($itemPath, $username)
 {
-    //TODO move the item in filesystem (in trash folder)
+    //DB
+    set_in_trash($itemPath, 1);
+    $trashItemPath = "./users_items/$username/trash/" . pathinfo($itemPath, PATHINFO_BASENAME);
+    set_item_path($itemPath, $trashItemPath);
+
+    //Filesystem
     $source_path = $itemPath;// get item path from DB
     $destination_path = "users_items/$username/trash/";
     if (rename($source_path, $destination_path . pathinfo($source_path, PATHINFO_BASENAME))) return true;
     else return false;
-
-    //TODO: make the changes to DB
 }
-
 ?>
